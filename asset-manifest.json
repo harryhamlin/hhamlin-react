@@ -1,10 +1,10 @@
 {
   "files": {
-    "main.css": "/static/css/main.d392e128.css",
-    "main.js": "/static/js/main.84edfba2.js",
-    "index.html": "/index.html",
-    "main.d392e128.css.map": "/static/css/main.d392e128.css.map",
-    "main.84edfba2.js.map": "/static/js/main.84edfba2.js.map"
+    "main.css": "/hhamlin-react/static/css/main.d392e128.css",
+    "main.js": "/hhamlin-react/static/js/main.84edfba2.js",
+    "index.html": "/hhamlin-react/index.html",
+    "main.d392e128.css.map": "/hhamlin-react/static/css/main.d392e128.css.map",
+    "main.84edfba2.js.map": "/hhamlin-react/static/js/main.84edfba2.js.map"
   },
   "entrypoints": [
     "static/css/main.d392e128.css",
