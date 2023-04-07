@@ -3,7 +3,10 @@ from 'react';
 import 'bulma/css/bulma.min.css';
 import Nav from './components/Nav';
 import Header from './components/Header';
-import About from './components/About'
+import About from './components/About';
+import Body from './components/Body';
+import Contact from './components/Contact';
+import Footer from './components/Footer';
 
 
 export default function App() {
@@ -17,6 +20,9 @@ export default function App() {
               <Nav/>
               <Header/>
               <About />
+              <Body />
+              <Contact />
+              <Footer />
             </div>
           </div>
         </div>

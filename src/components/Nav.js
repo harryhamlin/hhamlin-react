@@ -17,7 +17,7 @@ return (
 
   <div id="navbarBasicExample" className="navbar-menu">
     <div className="navbar-start">
-      <a className="navbar-item">
+      <a className="navbar-item" href="#aboutme">
         Home
       </a>
 
