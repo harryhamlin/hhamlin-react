@@ -9,12 +9,12 @@ const styles = {
     },
     border: {
         border: '2px solid #5A5A5A',
-    },
+    }
 }
 
 export default function Card(props) {
     return (
-        <div className="m-4">
+        <div  className="m-4">
             <a href={props.href}>
                 <img style={styles.border} className="image" src={props.image} alt={props.imageAlt} />
                 <div style={styles.title} className="is-flex is-flex-direction-column">

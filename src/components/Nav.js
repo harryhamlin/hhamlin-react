@@ -4,7 +4,7 @@ import 'bulma/css/bulma.min.css';
 
 export default function Nav() {
 return (
-<nav className="navbar is-fixed-top" role="navigation" aria-label="main navigation">
+<nav className="navbar is-fixed-top is-light" role="navigation" aria-label="main navigation">
   <div className="navbar-brand">
     <a className="navbar-item" href="https://bulma.io"></a>
     <span className="navbar-item is-size-3">

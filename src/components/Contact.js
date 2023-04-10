@@ -2,7 +2,6 @@ import React, { useState } from 'react';
 import 'bulma/css/bulma.min.css';
 
 export default function Contact() {
-    // Here we set two state variables for firstName and lastName using `useState`
     const [clientName, setName] = useState('');
     const [email, setEmail] = useState('');
     const [message, setMessage] = useState('');
