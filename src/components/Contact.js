@@ -32,39 +32,57 @@ export default function Contact() {
             borderRight: '2px solid #5A5A5A'
         }
     }
-    
+
     return (
-        <div className="columns">
+        <div className="columns" id="contact">
             <div className="column is-one-fifth is-flex is-justify-content-flex-end" >
                 <div><span style={styles.border} className="is-size-3 pr-2">Contact</span></div>
             </div>
             <div className="column">
-                <form className="form">
-                    <input
-                        value={clientName}
-                        name="clientName"
-                        onChange={handleInputChange}
-                        type="text"
-                        placeholder="Name"
-                    />
-                    <input
-                        value={email}
-                        name="email"
-                        onChange={handleInputChange}
-                        type="text"
-                        placeholder="Email"
-                    />
-                    <input
-                        value={message}
-                        name="message"
-                        onChange={handleInputChange}
-                        type="text"
-                        placeholder="Message"
-                    />
-                    <button type="button" onClick={handleFormSubmit}>
-                        Submit
-                    </button>
-                </form>
+                <div className="columns">
+                    <div className="field column is-2">
+                        <div className="control">
+                            <input
+                                className="input"
+                                value={clientName}
+                                name="clientName"
+                                onChange={handleInputChange}
+                                type="text"
+                                placeholder="Name"
+                            />
+                        </div>
+                    </div>
+
+                    <div className="field column is-2">
+                        <div className="control">
+                            <input
+                                className="input"
+                                value={email}
+                                name="email"
+                                onChange={handleInputChange}
+                                type="text"
+                                placeholder="Email"
+                            />
+                        </div>
+                    </div>
+                    <div className="field column is-2">
+                        <div className="control">
+                            <input
+                                className="input"
+                                value={message}
+                                name="message"
+                                onChange={handleInputChange}
+                                type="text"
+                                placeholder="Message"
+                            />
+                        </div>
+                    </div>
+                    <div className="column">
+                        <button className="button" type="button" onClick={handleFormSubmit}>
+                            Submit
+                        </button>
+                    </div>
+                </div>
             </div>
         </div>
     )

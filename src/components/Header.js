@@ -23,7 +23,7 @@ const styles = {
 
 export default function Header() {
     return (
-        <div>
+        <div id="header">
             <div style={styles.buffer_image}>
             </div>
             <div className="is-flex is-flex-direction-row-reverse is-align-items-flex-end mr-6" style={styles.section}>

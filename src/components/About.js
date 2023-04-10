@@ -10,7 +10,7 @@ const styles = {
 
 export default function About() {
     return (
-        <div id="aboutme" className="columns">
+        <div id="aboutme" className="columns px-5">
             <div className="column is-one-fifth is-flex is-justify-content-flex-end" >
                 <div><span style={styles.border} className="is-size-3 pr-2">About Me</span></div>
             </div>

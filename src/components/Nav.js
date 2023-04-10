@@ -4,9 +4,12 @@ import 'bulma/css/bulma.min.css';
 
 export default function Nav() {
 return (
-<nav className="navbar" role="navigation" aria-label="main navigation">
+<nav className="navbar is-fixed-top" role="navigation" aria-label="main navigation">
   <div className="navbar-brand">
     <a className="navbar-item" href="https://bulma.io"></a>
+    <span className="navbar-item is-size-3">
+        Harry Hamlin
+      </span>
 
     <a role="button" className="navbar-burger" aria-label="menu" aria-expanded="false" data-target="navbarBasicExample">
       <span aria-hidden="true"></span>
@@ -16,20 +19,21 @@ return (
   </div>
 
   <div id="navbarBasicExample" className="navbar-menu">
-    <div className="navbar-start">
-      <a className="navbar-item" href="#aboutme">
+    <div className="navbar-end">
+      
+      <a className="navbar-item" href="#header">
         Home
       </a>
 
-      <a className="navbar-item">
+      <a className="navbar-item" href="#aboutme">
         About Me
       </a>
 
-      <a className="navbar-item">
-        Projects
+      <a className="navbar-item" href="#portfolio">
+        Portfolio
       </a>
 
-      <a className="navbar-item">
+      <a className="navbar-item" href="#contact">
         Contact Me
       </a>
 
