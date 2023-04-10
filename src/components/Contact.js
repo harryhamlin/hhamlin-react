@@ -65,7 +65,7 @@ export default function Contact() {
                             />
                         </div>
                     </div>
-                    <div className="field column is-2">
+                    <div className="field column is-6">
                         <div className="control">
                             <input
                                 className="input"
