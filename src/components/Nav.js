@@ -30,15 +30,15 @@ return (
   <div id="nav-hhamlin" className={`navbar-menu ${active ? "is-active" : ""}`}>
     <div className="navbar-end">
 
-      <a className="navbar-item" href="#about"  onClick ={() => pageChangeHandler('about')}>
+      <a className={currentPage === 'about' ? 'navbar-item is-active': 'navbar-item'} href="#about" onClick ={() => pageChangeHandler('about')}>
         About Me
       </a>
 
-      <a className="navbar-item" href="#portfolio" onClick ={() => pageChangeHandler('portfolio')}>
+      <a className={currentPage === 'portfolio' ? 'navbar-item is-active': 'navbar-item'} href="#portfolio" onClick ={() => pageChangeHandler('portfolio')}>
         Portfolio
       </a>
 
-      <a className="navbar-item" href="#contact" onClick ={() => pageChangeHandler('contact')}>
+      <a className={currentPage === 'contact' ? 'navbar-item is-active': 'navbar-item'} href="#contact" onClick ={() => pageChangeHandler('contact')}>
         Contact Me
       </a>
 
@@ -48,10 +48,10 @@ return (
         </a>
 
         <div className="navbar-dropdown">
-          <a className="navbar-item" href="https://harryhamlin.github.io/hhamlin/harryhamlin.html">
+          <a className="navbar-item" target="_blank" rel="noreferrer" href="https://harryhamlin.github.io/hhamlin/harryhamlin.html">
             HTML
           </a>
-          <a className="navbar-item" href="https://harryhamlin.github.io/hhamlin/cvharryhamlin.html">
+          <a className="navbar-item" target="_blank" rel="noreferrer" href="https://harryhamlin.github.io/hhamlin/cvharryhamlin.html">
             PDF
           </a>
         </div>

@@ -31,7 +31,7 @@ export default function App() {
       <div>
 
               <Nav currentPage={currentPage} pageChangeHandler={pageChangeHandler} />
-              <Header/>
+              <Header />
               {renderPage()}
               <Footer />
 

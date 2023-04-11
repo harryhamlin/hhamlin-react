@@ -1,25 +1,7 @@
 import React, { useState } from 'react';
 import 'bulma/css/bulma.min.css';
 import { FaGithub } from 'react-icons/fa';
-
 import { IconContext } from "react-icons";
-
-const styles = {
-    title: {
-        position: 'relative',
-        bottom: '8vh',
-    },
-    border: {
-        border: '2px solid #5A5A5A',
-        width: '70vh',
-        height: '30vh',
-        opacity: '.75',
-        // backgroundImage: `url(${props.image})`,
-        backgroundSize: 'cover',
-        backgroundPosition: 'bottom',
-    },
-}
-
 
 export default function Card(props) {
     const [appear, setAppear] = useState({ visibility: 'hidden' });
