@@ -1,8 +1,9 @@
-import React//, { useState, useEffect } 
-from 'react';
+import React, { useState } from 'react';
 import 'bulma/css/bulma.min.css';
 
 export default function Nav({ currentPage, pageChangeHandler}) {
+  const [active, setActive] = useState(false);
+
 return (
 <nav className="navbar is-fixed-top is-light" role="navigation" aria-label="main navigation">
   <div className="navbar-brand">
@@ -10,20 +11,24 @@ return (
     <span className="navbar-item is-size-3">
         Harry Hamlin
       </span>
-
-    <a role="button" className="navbar-burger" aria-label="menu" aria-expanded="false" data-target="nav-hhamlin">
+      <button
+            onClick={() => {
+              setActive(!active);
+            }}
+            // role="button"
+            className={`navbar-burger ${active ? "is-active" : ""}`}
+            aria-label="menu"
+            aria-expanded="false"
+            data-target="navbarBasicExample"
+          >
       <span aria-hidden="true"></span>
       <span aria-hidden="true"></span>
       <span aria-hidden="true"></span>
-    </a>
+    </button>
   </div>
 
-  <div id="nav-hhamlin" className="navbar-menu">
+  <div id="nav-hhamlin" className={`navbar-menu ${active ? "is-active" : ""}`}>
     <div className="navbar-end">
-      
-      <a className="navbar-item" href="#header">
-        Home
-      </a>
 
       <a className="navbar-item" href="#about"  onClick ={() => pageChangeHandler('about')}>
         About Me

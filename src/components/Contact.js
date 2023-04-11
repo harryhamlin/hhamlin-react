@@ -1,10 +1,13 @@
 import React, { useState } from 'react';
 import 'bulma/css/bulma.min.css';
+import validator from 'validator';
 
 export default function Contact() {
     const [clientName, setName] = useState('');
     const [email, setEmail] = useState('');
     const [message, setMessage] = useState('');
+    const [messageError, setMessageError] = useState('');
+    const [emailError, setEmailError] = useState('');
 
     const handleInputChange = (e) => {
         const { name, value } = e.target;
@@ -52,7 +55,17 @@ export default function Contact() {
                         </div>
                     </div>
 
-                    <div className="field column is-2">
+                    <div className="field column is-2"
+                        onMouseEnter={e => {
+                            setEmailError('')
+                        }}
+                        onMouseLeave={e => {
+                            if (validator.isEmail(email)) {
+                                setEmailError('')
+                            } else {
+                                setEmailError('Please enter a valid email address!')
+                            }
+                        }}>
                         <div className="control">
                             <input
                                 className="input"
@@ -64,7 +77,15 @@ export default function Contact() {
                             />
                         </div>
                     </div>
-                    <div className="field column is-6">
+                    <div className="field column is-6"
+                        onMouseEnter={e => {
+                            setMessageError('')
+                        }}
+                        onMouseLeave={e => {
+                            if (!message) {
+                                setMessageError('Message field cannot be left blank!')
+                            }
+                        }}>
                         <div className="control">
                             <input
                                 className="input"
@@ -82,6 +103,8 @@ export default function Contact() {
                         </button>
                     </div>
                 </div>
+                <div>{messageError}</div>
+                <div>{emailError}</div>
             </div>
         </div>
     )
