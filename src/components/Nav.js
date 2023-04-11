@@ -48,10 +48,10 @@ return (
         </a>
 
         <div className="navbar-dropdown">
-          <a className="navbar-item">
+          <a className="navbar-item" href="https://harryhamlin.github.io/hhamlin/harryhamlin.html">
             HTML
           </a>
-          <a className="navbar-item">
+          <a className="navbar-item" href="https://harryhamlin.github.io/hhamlin/cvharryhamlin.html">
             PDF
           </a>
         </div>
