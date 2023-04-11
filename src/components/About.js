@@ -10,12 +10,12 @@ const styles = {
 
 export default function About() {
     return (
-        <div id="aboutme" className="columns px-5">
+        <div id="about" className="columns px-5">
             <div className="column is-one-fifth is-flex is-justify-content-flex-end" >
                 <div><span style={styles.border} className="is-size-3 pr-2">About Me</span></div>
             </div>
             <div className="column is-flex is-flex-direction-column has-text-justified">
-                <div>
+                <section className="mb-5">
                     My name is Harry Hamlin and I'm a business leader in the Pacific Northwest. My professional passions
                     include a desire to foster growth and mentorship, specifically through the systematic implementation and
                     execution of efficient systemization. My work styles are big-picture oriented, I'm confident and
@@ -23,7 +23,8 @@ export default function About() {
                     a part of and through collaboration, foster growth and forward progress. My inspirations come from
                     successes from my work colleagues, my friends and my family. My interests include mountain biking,
                     traveling, and cooking.
-                </div><div className="spacer"></div><div>
+                </section>
+                <section>
                     I've spent the past 10 years working professionally in the outdoor industry. The first several years of
                     my professional life were spent working as a shift supervisor on ski patrol at Crystal Mountain in
                     Washington and a professional climbing guide internationally. Through my work, I was able to reach the
@@ -34,7 +35,7 @@ export default function About() {
                     I've had the opportunity to execute many technical projects, including the creation and systematic
                     implementation of a custom built registration system and a collaborative ATF compliant data collection
                     system.
-                </div>
+                </section>
             </div>
         </div>
     )

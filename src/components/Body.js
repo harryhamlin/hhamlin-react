@@ -18,15 +18,16 @@ export default function Body() {
             </div>
             <div className="column">
                 <div className="columns">
-                    <Card className="column" href="https://www.google.com" image={photo} imageAlt="project photo" title="Project 1" repo="https://www.facebook.com" />
-                </div>
-                <div className="columns">
+                    <Card className="column" href="https://www.google.com" image={photo} imageAlt="cherry blossoms" title="Project 1" repo="https://www.facebook.com" />
                     <Card className="column" href="https://www.google.com" image={photo} imageAlt="cherry blossoms" title="Project 2" repo="https://www.facebook.com" />
-                    <Card className="column" href="https://www.google.com" image={photo} imageAlt="cherry blossoms" title="Project 3" repo="https://www.facebook.com" />
                 </div>
                 <div className="columns">
+                    <Card className="column" href="https://www.google.com" image={photo} imageAlt="cherry blossoms" title="Project 3" repo="https://www.facebook.com" />
                     <Card className="column" href="https://www.google.com" image={photo} imageAlt="cherry blossoms" title="Project 4" repo="https://www.facebook.com" />
+                </div>
+                <div className="columns">
                     <Card className="column" href="https://www.google.com" image={photo} imageAlt="cherry blossoms" title="Project 5" repo="https://www.facebook.com" />
+                    <Card className="column" href="https://www.google.com" image={photo} imageAlt="cherry blossoms" title="Project 6" repo="https://www.facebook.com" />
                 </div>
             </div>
         </div>

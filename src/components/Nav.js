@@ -2,7 +2,7 @@ import React//, { useState, useEffect }
 from 'react';
 import 'bulma/css/bulma.min.css';
 
-export default function Nav() {
+export default function Nav({ currentPage, pageChangeHandler}) {
 return (
 <nav className="navbar is-fixed-top is-light" role="navigation" aria-label="main navigation">
   <div className="navbar-brand">
@@ -25,15 +25,15 @@ return (
         Home
       </a>
 
-      <a className="navbar-item" href="#aboutme">
+      <a className="navbar-item" href="#about"  onClick ={() => pageChangeHandler('about')}>
         About Me
       </a>
 
-      <a className="navbar-item" href="#portfolio">
+      <a className="navbar-item" href="#portfolio" onClick ={() => pageChangeHandler('portfolio')}>
         Portfolio
       </a>
 
-      <a className="navbar-item" href="#contact">
+      <a className="navbar-item" href="#contact" onClick ={() => pageChangeHandler('contact')}>
         Contact Me
       </a>
 
