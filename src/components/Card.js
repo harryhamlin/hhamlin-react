@@ -34,7 +34,7 @@ export default function Card(props) {
                 setOpacity({ opacity: "1" })
             }}>
             <div className="is-flex is-justify-content-space-evenly is-align-items-center" style={{ backgroundImage: `url(${props.image})`, width: "70vh", height: "30vh", backgroundSize: "cover" }}>
-                <button className="button is-white" style={appear} href={props.href}>{props.title}</button>
+                <a className="button is-white" style={appear} href={props.href}>{props.title}</a>
                 <a href={props.repo} style={appear}>
                     <IconContext.Provider value={{ color: "white", size: "3.5em", className: "global-class-name" }}>
                         <div>
