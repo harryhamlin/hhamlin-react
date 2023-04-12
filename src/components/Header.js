@@ -21,14 +21,14 @@ const styles = {
     }
 }
 
-export default function Header() {
+export default function Header(props) {
     return (
         <div id="header">
             <div style={styles.buffer_image}>
             </div>
             <div className="is-flex is-flex-direction-row-reverse is-align-items-flex-end mr-6" style={styles.section}>
                 <figure className="image is-128x128">
-                    <img className={(window.location.href === 'https://www.hhamlin.com/#about') ? 'is-rounded' : 'is-hidden'} src={headshot} id="headshot" alt="Harry Hamlin Headshot" style={styles.headshot} />
+                    <img className={(props.currentPage === 'about') ? 'is-rounded' : 'is-hidden'} src={headshot} id="headshot" alt="Harry Hamlin Headshot" style={styles.headshot} />
                 </figure>
             </div>
         </div>

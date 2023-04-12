@@ -103,8 +103,7 @@ export default function Contact() {
                         </button>
                     </div>
                 </div>
-                <div>{messageError}</div>
-                <div>{emailError}</div>
+                <div>{messageError} {emailError}</div>
             </div>
         </div>
     )

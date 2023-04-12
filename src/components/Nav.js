@@ -15,7 +15,6 @@ return (
             onClick={() => {
               setActive(!active);
             }}
-            // role="button"
             className={`navbar-burger ${active ? "is-active" : ""}`}
             aria-label="menu"
             aria-expanded="false"

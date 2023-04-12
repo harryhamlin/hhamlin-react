@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import 'bulma/css/bulma.min.css';
 import { FaGithub } from 'react-icons/fa';
 import { IconContext } from "react-icons";
@@ -15,7 +15,7 @@ export default function Card(props) {
                 setAppear({ visibility: "hidden" })
                 setOpacity({ opacity: "1" })
             }}>
-            <div className="is-flex is-justify-content-space-evenly is-align-items-center" style={{ backgroundImage: `url(${props.image})`, width: "70vh", height: "30vh", backgroundSize: "cover" }}>
+            <div className="is-flex is-justify-content-space-evenly is-align-items-center box" style={{ backgroundImage: `url(${props.image})`, width:"35vh", height: "20vh", backgroundSize: "cover" }}>
                 <a className="button is-white" style={appear} href={props.href}>{props.title}</a>
                 <a href={props.repo} style={appear}>
                     <IconContext.Provider value={{ color: "white", size: "3.5em", className: "global-class-name" }}>

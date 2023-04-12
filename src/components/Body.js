@@ -17,17 +17,16 @@ export default function Body() {
                 <div><span style={styles.border} className="is-size-3 pr-2">Portfolio</span></div>
             </div>
             <div className="column">
-                <div className="columns">
-                    <Card className="column" href="https://www.google.com" image={photo} imageAlt="cherry blossoms" title="Project 1" repo="https://www.facebook.com" />
-                    <Card className="column" href="https://www.google.com" image={photo} imageAlt="cherry blossoms" title="Project 2" repo="https://www.facebook.com" />
-                </div>
-                <div className="columns">
-                    <Card className="column" href="https://www.google.com" image={photo} imageAlt="cherry blossoms" title="Project 3" repo="https://www.facebook.com" />
-                    <Card className="column" href="https://www.google.com" image={photo} imageAlt="cherry blossoms" title="Project 4" repo="https://www.facebook.com" />
-                </div>
-                <div className="columns">
-                    <Card className="column" href="https://www.google.com" image={photo} imageAlt="cherry blossoms" title="Project 5" repo="https://www.facebook.com" />
-                    <Card className="column" href="https://www.google.com" image={photo} imageAlt="cherry blossoms" title="Project 6" repo="https://www.facebook.com" />
+                <div className="columns is-multiline is-flex is-justify-content-center">
+                    <Card  href="https://www.google.com" image={photo} imageAlt="cherry blossoms" title="Project 1" repo="https://www.facebook.com" />
+
+                    <Card  href="https://www.google.com" image={photo} imageAlt="cherry blossoms" title="Project 2" repo="https://www.facebook.com" />
+
+                    <Card  href="https://www.google.com" image={photo} imageAlt="cherry blossoms" title="Project 3" repo="https://www.facebook.com" />
+                    <Card  href="https://www.google.com" image={photo} imageAlt="cherry blossoms" title="Project 4" repo="https://www.facebook.com" />
+
+                    <Card  href="https://www.google.com" image={photo} imageAlt="cherry blossoms" title="Project 5" repo="https://www.facebook.com" />
+                    <Card  href="https://www.google.com" image={photo} imageAlt="cherry blossoms" title="Project 6" repo="https://www.facebook.com" />
                 </div>
             </div>
         </div>
