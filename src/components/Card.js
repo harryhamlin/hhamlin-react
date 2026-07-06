@@ -1,30 +1,24 @@
-import React, { useState, useEffect } from 'react';
-import 'bulma/css/bulma.min.css';
-import { FaGithub } from 'react-icons/fa';
-import { IconContext } from "react-icons";
+import React from 'react';
 
-export default function Card(props) {
-    const [appear, setAppear] = useState({ visibility: 'hidden' });
-    const [opaque, setOpacity] = useState({ opacity: "1" })
-    return (
-        <div className="m-4" style={opaque} onMouseEnter={e => {
-            setAppear({ visibility: "visible" });
-            setOpacity({ opacity: ".5" });
-        }}
-            onMouseLeave={e => {
-                setAppear({ visibility: "hidden" })
-                setOpacity({ opacity: "1" })
-            }}>
-            <div className="is-flex is-justify-content-space-evenly is-align-items-center box" style={{ backgroundImage: `url(${props.image})`, width:"35vh", height: "20vh", backgroundSize: "cover" }}>
-                <a className="button is-white" style={appear} href={props.href}>{props.title}</a>
-                <a href={props.repo} style={appear}>
-                    <IconContext.Provider value={{ color: "white", size: "3.5em", className: "global-class-name" }}>
-                        <div>
-                            <FaGithub />
-                        </div>
-                    </IconContext.Provider>
-                </a>
-            </div>
+export default function Card({ title, tags, description, href, repo, image, imageAlt }) {
+  return (
+    <div className="portfolio-card">
+      {image && (
+        <img
+          className="portfolio-card-image"
+          src={image}
+          alt={imageAlt || title}
+        />
+      )}
+      <div className="portfolio-card-body">
+        <h3>{title}</h3>
+        {tags && <p className="card-tags">{tags}</p>}
+        {description && <p>{description}</p>}
+        <div className="portfolio-card-links">
+          {href && <a href={href} target="_blank" rel="noreferrer">Live ↗</a>}
+          {repo && <a href={repo} target="_blank" rel="noreferrer">GitHub ↗</a>}
         </div>
-    )
+      </div>
+    </div>
+  );
 }

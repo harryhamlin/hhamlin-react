@@ -1,36 +1,34 @@
-import React//, { useState, useEffect } 
-    from 'react';
-import 'bulma/css/bulma.min.css';
-import headshot from '../images/headshot.jpg';
-import blossoms from '../images/cherryblossoms.jpg';
+import React from 'react';
 
-const styles = {
-    buffer_image: {
-        height: '30vh',
-        opacity: '.75',
-        backgroundImage: `url(${blossoms})`,
-        backgroundSize: 'cover',
-        backgroundPosition: 'bottom',
-    },
-    headshot: {
-        border: '2px solid #5A5A5A',
-    },
-    section: {
-        position: 'relative',
-        bottom: '8vh'
-    }
-}
+const PAGE_META = {
+  about: {
+    eyebrow: '47.6062° N, 122.3321° W — Seattle, WA',
+    title: 'Harry Hamlin',
+    tagline: 'Operations executive, technical leader, and alpine guide.',
+  },
+  portfolio: {
+    eyebrow: 'Selected work',
+    title: 'Portfolio',
+    tagline: 'Projects spanning operations systems, web development, and data modeling.',
+  },
+  contact: {
+    eyebrow: 'Get in touch',
+    title: 'Contact',
+    tagline: null,
+  },
+};
 
-export default function Header(props) {
-    return (
-        <div id="header">
-            <div style={styles.buffer_image}>
-            </div>
-            <div className="is-flex is-flex-direction-row-reverse is-align-items-flex-end mr-6" style={styles.section}>
-                <figure className="image is-128x128">
-                    <img className={(props.currentPage === 'about') ? 'is-rounded' : 'is-hidden'} src={headshot} id="headshot" alt="Harry Hamlin Headshot" style={styles.headshot} />
-                </figure>
-            </div>
-        </div>
-    )
+export default function Header({ currentPage }) {
+  if (currentPage === 'CV') return null;
+  const meta = PAGE_META[currentPage] || PAGE_META.about;
+
+  return (
+    <header className="page-header">
+      <div className="page-header-inner">
+        <p className="page-header-eyebrow">{meta.eyebrow}</p>
+        <h1 className="page-header-title">{meta.title}</h1>
+        {meta.tagline && <p className="page-header-tagline">{meta.tagline}</p>}
+      </div>
+    </header>
+  );
 }

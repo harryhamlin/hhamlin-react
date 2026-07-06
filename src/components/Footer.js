@@ -1,20 +1,14 @@
 import React from 'react';
-import 'bulma/css/bulma.min.css';
-
-const styles = {
-    footer: {
-        minHeight: "20vh"
-    }
-}
 
 export default function Footer() {
-    return (
-        <footer className="footer">
-            <div className="is-flex is-justify-content-space-around" style={styles.footer}>
-                <a href="https://www.github.com/harryhamlin">GitHub</a>
-                <a href="https://www.linkedin.com/in/harry-hamlin-a4a1b0234/">LinkedIn</a>
-                <a href="https://www.npmjs.com/~harryhamlin">NPM</a>
-            </div>
-        </footer>
-    )
+  return (
+    <footer className="site-footer">
+      <p>Harry Hamlin · Seattle, WA · <a href="mailto:harryhamlin@gmail.com">harryhamlin@gmail.com</a></p>
+      <div className="footer-links">
+        <a href="https://www.github.com/harryhamlin" target="_blank" rel="noreferrer">GitHub</a>
+        <a href="https://www.linkedin.com/in/harry-hamlin-a4a1b0234/" target="_blank" rel="noreferrer">LinkedIn</a>
+        <a href="https://www.npmjs.com/~harryhamlin" target="_blank" rel="noreferrer">NPM</a>
+      </div>
+    </footer>
+  );
 }
