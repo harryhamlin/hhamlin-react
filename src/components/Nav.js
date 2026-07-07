@@ -39,6 +39,7 @@ export default function Nav({ currentPage, pageChangeHandler }) {
         <a
           className="nav-link"
           href="https://harryhamlin.github.io/hhamlin/cvharryhamlin.html"
+          
           target="_blank"
           rel="noreferrer"
         >

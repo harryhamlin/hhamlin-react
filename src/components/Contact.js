@@ -1,80 +1,24 @@
-import React, { useState } from 'react';
-import validator from 'validator';
+import React from 'react';
+
+const links = [
+  { label: 'Email', value: 'harryhamlin@gmail.com', href: 'mailto:harryhamlin@gmail.com' },
+  { label: 'GitHub', value: '@harryhamlin', href: 'https://github.com/harryhamlin' },
+  { label: 'LinkedIn', value: 'harry-hamlin', href: 'https://www.linkedin.com/in/harry-hamlin-a4a1b0234/' },
+];
 
 export default function Contact() {
-  const [clientName, setName] = useState('');
-  const [email, setEmail] = useState('');
-  const [message, setMessage] = useState('');
-  const [emailError, setEmailError] = useState('');
-  const [messageError, setMessageError] = useState('');
-
-  const handleInputChange = (e) => {
-    const { name, value } = e.target;
-    if (name === 'clientName') setName(value);
-    else if (name === 'email') setEmail(value);
-    else if (name === 'message') setMessage(value);
-  };
-
-  const handleFormSubmit = (e) => {
-    e.preventDefault();
-    let valid = true;
-    if (!validator.isEmail(email)) { setEmailError('Please enter a valid email address.'); valid = false; }
-    if (!message) { setMessageError('Message cannot be blank.'); valid = false; }
-    if (!valid) return;
-    console.log(`${clientName} ${email} ${message}`);
-    setName(''); setEmail(''); setMessage('');
-    setEmailError(''); setMessageError('');
-  };
-
   return (
     <main className="page-main" id="contact">
       <section className="page-section reveal">
-        <p className="section-label">Send a Message</p>
-        <form className="contact-form" onSubmit={handleFormSubmit} noValidate>
-          <div className="form-field">
-            <label htmlFor="clientName">Name</label>
-            <input
-              id="clientName"
-              name="clientName"
-              type="text"
-              value={clientName}
-              onChange={handleInputChange}
-              placeholder="Your name"
-            />
-          </div>
-          <div className="form-field">
-            <label htmlFor="email">Email</label>
-            <input
-              id="email"
-              name="email"
-              type="email"
-              value={email}
-              onChange={handleInputChange}
-              placeholder="you@example.com"
-              onBlur={() => {
-                if (email && !validator.isEmail(email)) setEmailError('Please enter a valid email address.');
-                else setEmailError('');
-              }}
-            />
-            {emailError && <p className="form-error">{emailError}</p>}
-          </div>
-          <div className="form-field">
-            <label htmlFor="message">Message</label>
-            <textarea
-              id="message"
-              name="message"
-              value={message}
-              onChange={handleInputChange}
-              placeholder="What's on your mind?"
-              onBlur={() => {
-                if (!message) setMessageError('Message cannot be blank.');
-                else setMessageError('');
-              }}
-            />
-            {messageError && <p className="form-error">{messageError}</p>}
-          </div>
-          <button className="form-submit" type="submit">Send Message</button>
-        </form>
+        <p className="section-label">Get in Touch</p>
+        <ul className="contact-links">
+          {links.map(({ label, value, href }) => (
+            <li key={label} className="contact-link-row">
+              <span className="contact-link-label">{label}</span>
+              <a className="contact-link-value" href={href}>{value}</a>
+            </li>
+          ))}
+        </ul>
       </section>
     </main>
   );

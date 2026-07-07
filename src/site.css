@@ -223,36 +223,23 @@ a:focus-visible, button:focus-visible { outline: 2px solid var(--ink); outline-o
 }
 .edu p { font-size: 14px; color: var(--secondary); }
 
-/* ── Contact form ────────────────────────────────── */
-.contact-form { display: grid; gap: 24px; max-width: 480px; }
-.form-field label {
-  display: block;
+/* ── Contact links ───────────────────────────────── */
+.contact-links { list-style: none; }
+.contact-link-row {
+  display: flex; align-items: baseline; gap: 24px;
+  padding: 18px 0; border-bottom: 1px solid var(--hairline);
+}
+.contact-link-row:last-child { border-bottom: none; }
+.contact-link-label {
   font-family: "IBM Plex Mono", monospace; font-size: 10px;
   letter-spacing: .14em; text-transform: uppercase;
-  color: var(--muted); margin-bottom: 8px;
+  color: var(--muted); width: 80px; flex-shrink: 0;
 }
-.form-field input,
-.form-field textarea {
-  width: 100%; background: #fff; border: 1px solid var(--hairline);
-  padding: 10px 14px;
+.contact-link-value {
   font-family: "Barlow", sans-serif; font-size: 15px;
-  color: var(--text); outline: none; transition: border-color .15s; border-radius: 0;
+  color: var(--secondary); text-decoration: none;
 }
-.form-field input:focus,
-.form-field textarea:focus { border-color: var(--muted); }
-.form-field textarea { min-height: 130px; resize: vertical; }
-.form-error {
-  font-family: "IBM Plex Mono", monospace; font-size: 11px;
-  color: #a33; margin-top: 4px;
-}
-.form-submit {
-  background: var(--ink); color: var(--snow); border: none;
-  padding: 12px 28px; cursor: pointer;
-  font-family: "Barlow Condensed", sans-serif; font-size: 13px;
-  font-weight: 700; letter-spacing: .12em; text-transform: uppercase;
-  transition: background .15s; align-self: start;
-}
-.form-submit:hover { background: var(--text); }
+.contact-link-value:hover { color: var(--ink); }
 
 /* ── Footer ──────────────────────────────────────── */
 .site-footer {

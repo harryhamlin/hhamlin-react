@@ -2,7 +2,7 @@ import React from 'react';
 
 const PAGE_META = {
   about: {
-    eyebrow: '47.6062° N, 122.3321° W — Seattle, WA',
+    eyebrow: 'Seattle, WA',
     title: 'Harry Hamlin',
     tagline: 'Operations executive, technical leader, and alpine guide.',
   },

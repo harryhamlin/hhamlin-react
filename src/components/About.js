@@ -7,20 +7,21 @@ export default function About() {
         <p className="section-label">Background</p>
         <p>
           I spent a decade leading climbers on the world's highest peaks before taking over
-          day-to-day leadership of International Mountain Guides — one of the most renowned
-          guide services in the world — through the pandemic and the growth years beyond.
-          As General Manager, I run a 40+ person operation while personally architecting the
+          <strong>operational leadership</strong> and <strong>business management</strong> of International Mountain Guides through the pandemic and the growth years beyond.
+          As Director of Operations, I ran a <strong>40+ person</strong> operation while architecting and executing the
           company's registration, payments, and labor-forecasting infrastructure.
         </p>
         <p style={{ marginTop: '18px' }}>
-          That combination is the through-line of my career: high-consequence leadership
-          paired with hands-on systems building. I write production JavaScript, design data
-          models, and use AI tools daily — for code, for marketing content, for customer
-          communications, and for the analytical models that drive pricing and payroll
+          That combination is the through-line of my career: <strong>high-consequence leadership</strong> paired with hands-on <strong>systems design</strong>, building, and implementation. I write production JavaScript, design data
+          models, and use AI tools daily: for code, for marketing content, for customer
+          communications, sales engineering, and for the analytical models that drive pricing and payroll
           decisions.
         </p>
         <p style={{ marginTop: '18px' }}>
-          Outside work: mountain biking, traveling, cooking, and finding new routes up old peaks.
+I've always been a curious person; curious about what lies beyond the edge of my understanding, curious about the world beyond my view. I'm driven to apply my knowledge to achieve <strong>successful outcomes</strong>, while still remaining <strong>open minded</strong> to other viewpoints, experiences, and backgrounds.
+        </p>
+        <p style={{ marginTop: '18px' }}>
+          Outside work: biking, traveling, drones, 3d printing, building
         </p>
       </section>
     </main>
