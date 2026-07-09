@@ -140,6 +140,22 @@ a:focus-visible, button:focus-visible { outline: 2px solid var(--ink); outline-o
 .role li::before { content: "—"; position: absolute; left: 0; color: #c8c0b8; }
 .role li b { font-weight: 600; color: var(--ink); }
 
+/* ── Stat row ────────────────────────────────────── */
+.stat-row {
+  display: flex; flex-wrap: wrap; gap: 32px;
+  margin-top: 36px; padding-top: 36px;
+  border-top: 1px solid var(--hairline);
+}
+.stat-item { display: flex; flex-direction: column; gap: 6px; }
+.stat-value {
+  font-family: "Barlow Condensed", sans-serif; font-weight: 700;
+  font-size: 32px; letter-spacing: .01em; color: var(--ink); line-height: 1;
+}
+.stat-label {
+  font-family: "IBM Plex Mono", monospace; font-size: 10px;
+  letter-spacing: .1em; text-transform: uppercase; color: var(--muted);
+}
+
 /* ── Case study cards ────────────────────────────── */
 .case {
   margin-bottom: 28px; padding-bottom: 28px;

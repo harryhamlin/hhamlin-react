@@ -11,6 +11,11 @@ const PAGE_META = {
     title: 'Portfolio',
     tagline: 'Projects spanning operations systems, web development, and data modeling.',
   },
+  climbing: {
+    eyebrow: 'Expedition record',
+    title: 'Climbing',
+    tagline: 'A decade guiding climbers on some of the world’s highest and most technical peaks.',
+  },
   contact: {
     eyebrow: 'Get in touch',
     title: 'Contact',

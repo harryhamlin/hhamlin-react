@@ -3,6 +3,7 @@ import React, { useState } from 'react';
 const links = [
   { key: 'about',     label: 'About' },
   { key: 'portfolio', label: 'Portfolio' },
+  { key: 'climbing',  label: 'Climbing' },
   { key: 'contact',   label: 'Contact' },
   { key: 'CV',        label: 'CV' },
 ];

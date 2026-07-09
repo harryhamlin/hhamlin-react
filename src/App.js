@@ -7,6 +7,7 @@ import Body from './components/Body';
 import Contact from './components/Contact';
 import Footer from './components/Footer';
 import CV from './components/CV';
+import Climbing from './components/Climbing';
 
 export default function App() {
   const [currentPage, setCurrentPage] = useState('about');
@@ -24,6 +25,7 @@ export default function App() {
   const renderPage = () => {
     if (currentPage === 'about') return <About />;
     if (currentPage === 'portfolio') return <Body />;
+    if (currentPage === 'climbing') return <Climbing />;
     if (currentPage === 'contact') return <Contact />;
     if (currentPage === 'CV') return <CV />;
   };
