@@ -3,11 +3,11 @@ import React from 'react';
 export default function CV() {
   return (
     <>
-      <header className="page-header">
+      <header className="page-header cv-page">
         <div className="page-header-inner">
-          <p className="page-header-eyebrow">47.6062° N, 122.3321° W — Seattle, WA</p>
+          <p className="page-header-eyebrow">Seattle, WA</p>
           <h1 className="page-header-title">Harry Hamlin</h1>
-          <p className="page-header-tagline">Operations executive and technical leader — I build the systems as readily as the teams, from Everest expeditions to payment infrastructure.</p>
+          <p className="page-header-tagline">Operations Executive and Technical Leader</p>
           <div className="page-header-contact">
             <a href="mailto:harryhamlin@gmail.com">harryhamlin@gmail.com</a>
             <a href="tel:+15417609005">541.760.9005</a>
@@ -16,27 +16,27 @@ export default function CV() {
         </div>
       </header>
 
-      <main className="page-main">
+      <main className="page-main cv-page">
         <section className="page-section reveal" id="profile">
           <p className="section-label">Profile</p>
-          <p>I spent a decade leading climbers on the world's highest peaks before taking over day-to-day leadership of International Mountain Guides — one of the most renowned guide services in the world — through the pandemic and beyond. As General Manager, I ran a 40+ person operation while personally architecting the company's registration, payments, and labor-forecasting infrastructure.</p>
-          <p style={{ marginTop: '18px' }}>That combination is the through-line of my career: high-consequence leadership paired with hands-on systems building. I write production JavaScript, design data models, and use AI tools daily — for code, for marketing content, for customer communications, and for the analytical models that drive pricing and payroll decisions. Whether the problem is a race condition in a checkout flow or a contentious compensation overhaul, my approach is the same: gather real data, build a defensible system, and bring the team along.</p>
+          <p>I spent a decade leading climbers on the world's highest peaks before taking over day-to-day leadership of International Mountain Guides, one of the most renowned guide services in the world. As Director of Operations and General Manager, I ran a 40+ person operation while personally architecting the company's registration, payments, and labor-forecasting infrastructure.</p>
+          <p style={{ marginTop: '18px' }}>That combination is the through-line of my career: high-consequence leadership paired with hands-on systems building. I write production JavaScript, design data models, and use AI tools daily: for code, for marketing content, for customer communications, and for the analytical models that drive pricing and payroll decisions. Whether the problem is a race condition in a checkout flow or a contentious compensation overhaul, my approach is the same: gather real data, build a defensible system, and bring the team along.</p>
         </section>
 
         <section className="page-section reveal" id="experience">
           <p className="section-label">Experience</p>
 
           <div className="role">
-            <div className="role-head"><h3>General Manager / Director of Operations</h3><span className="dates">Jan 2021 — Present</span></div>
+            <div className="role-head"><h3>Director of Operations / General Manager</h3><span className="dates">Jan 2021 — June 2026</span></div>
             <p className="org">International Mountain Guides · Ashford, WA</p>
             <ul>
               <li>Full P&amp;L and operational leadership of a premier international guide service: hiring, training, performance management, and development for a 40+ person team of guides, administrators, and contractors.</li>
               <li>Achieved <b>20% year-over-year growth</b> through new product development, data-informed pricing, and targeted marketing; grew total revenue <b>30% over five years</b> by pricing to demand elasticity, moving the catalog from selling out in a month to a controlled ~90% annual sell-through.</li>
-              <li>Designed and rolled out an industry-first overhaul of a decades-old day-rate pay system — later mimicked by much of the industry. Full story below.</li>
+              <li>Designed and rolled out an industry-first overhaul of a decades-old day-rate pay system, later mimicked by much of the industry. Full story below.</li>
               <li>Architected the company's customer registration system, payment processing migration, and real-time labor cost model; directed PCI-compliant payments, cybersecurity implementation, and a back-end email migration enabling CRM integration.</li>
               <li>Integrated AI tools into daily operations: LLM coding assistants for internal system development, AI-generated marketing copy tuned with user telemetry data, AI-drafted customer communications at scale, and AI-assisted analysis in forecasting and pricing work.</li>
               <li>Developed COVID-19 operating policy in collaboration with government agencies, physicians, and industry partners; ensured compliance with federal contracting and land-use permit regulations while maximizing performance.</li>
-              <li>Handled sensitive personnel matters — terminations, restructuring, difficult negotiations — with documented process and follow-through that preserved morale and key relationships.</li>
+              <li>Handled sensitive personnel matters, including terminations, restructuring, difficult negotiations; with documented process and follow-through that preserved morale and key relationships.</li>
             </ul>
           </div>
 
@@ -45,7 +45,7 @@ export default function CV() {
             <p className="org">International Mountain Guides</p>
             <ul>
               <li>Led teams of 2–10 guides and staff in extreme, high-consequence environments, managing risk, expectations, and wellbeing for staff and clientele in hyper objective-based guiding.</li>
-              <li>Led 50+ successful summits worldwide — Mt. Rainier, Aconcagua, and Lhotse among them — and directed high-hazard rescues when required.</li>
+              <li>Led 50+ successful summits worldwide, including Mt Everest, Mt Rainier, Ama Dablam and Kilimanajaro, and directed high-hazard rescues when required.</li>
               <li>Balanced client-facing and staff-facing communication when implementing strategy, building the judgment that later anchored executive crisis management.</li>
             </ul>
           </div>
