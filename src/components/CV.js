@@ -1,8 +1,78 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
+
+const SECTION_ORDER = ['profile', 'experience', 'case-studies', 'skills', 'education'];
+const SECTION_LABELS = {
+  profile: 'Profile',
+  experience: 'Experience',
+  'case-studies': 'Case Studies',
+  skills: 'Technical Skills',
+  education: 'Education',
+};
+
+// Height of the fixed top nav a title must scroll behind to count as "exited".
+const NAV_HEIGHT = 56;
 
 export default function CV() {
+  const [trackerId, setTrackerId] = useState(null);
+
+  useEffect(() => {
+    const titles = SECTION_ORDER
+      .map(id => ({ id, el: document.querySelector(`#${id} .section-label`) }))
+      .filter(t => t.el);
+    if (!titles.length) return;
+
+    const scroller = document.body.scrollHeight > document.body.clientHeight
+      ? document.body
+      : document.documentElement;
+
+    let raf = null;
+    const update = () => {
+      raf = null;
+      // The tracker itself sits vertically centered in the viewport.
+      const trackerY = window.innerHeight / 2;
+
+      // Most-recently-passed title: the last one that has fully
+      // scrolled behind the fixed nav.
+      let currentIndex = -1;
+      for (let i = 0; i < titles.length; i++) {
+        if (titles[i].el.getBoundingClientRect().bottom <= NAV_HEIGHT) currentIndex = i;
+      }
+      if (currentIndex === -1) {
+        setTrackerId(null);
+        return;
+      }
+
+      // Once the *next* section's real title scrolls up level with the
+      // tracker's row, hide the tracker so the two don't overlap; it
+      // reappears (now for that next section) once that title itself
+      // exits behind the nav.
+      const next = titles[currentIndex + 1];
+      const collidingWithNext = next && next.el.getBoundingClientRect().top <= trackerY;
+
+      setTrackerId(collidingWithNext ? null : titles[currentIndex].id);
+    };
+    const onScroll = () => {
+      if (raf == null) raf = requestAnimationFrame(update);
+    };
+
+    update();
+    scroller.addEventListener('scroll', onScroll, { passive: true });
+    window.addEventListener('resize', onScroll);
+
+    return () => {
+      scroller.removeEventListener('scroll', onScroll);
+      window.removeEventListener('resize', onScroll);
+      if (raf != null) cancelAnimationFrame(raf);
+    };
+  }, []);
+
   return (
     <>
+      {trackerId && (
+        <aside className="section-tracker" aria-hidden="true">
+          <span key={trackerId} className="section-tracker-text">{SECTION_LABELS[trackerId]}</span>
+        </aside>
+      )}
       <header className="page-header cv-page">
         <div className="page-header-inner">
           <p className="page-header-eyebrow">Seattle, WA</p>
