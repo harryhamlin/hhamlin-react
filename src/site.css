@@ -140,6 +140,26 @@ a:focus-visible, button:focus-visible { outline: 2px solid var(--ink); outline-o
 .role li::before { content: "—"; position: absolute; left: 0; color: #c8c0b8; }
 .role li b { font-weight: 600; color: var(--ink); }
 
+/* ── Expeditions ─────────────────────────────────── */
+.expedition { display: flex; gap: 24px; margin-bottom: 52px; }
+.expedition:last-child { margin-bottom: 0; }
+.expedition-media { flex: 0 0 140px; width: 140px; }
+.expedition-media img {
+  width: 100%; aspect-ratio: 4 / 3; object-fit: cover; object-position: center;
+  display: block; filter: grayscale(30%);
+}
+.expedition-media-placeholder {
+  width: 100%; aspect-ratio: 4 / 3;
+  display: flex; align-items: center; justify-content: center;
+  border: 1px dashed var(--hairline); background: rgba(0,0,0,.015);
+}
+.expedition-media-placeholder span {
+  font-family: "IBM Plex Mono", monospace; font-size: 10px;
+  letter-spacing: .12em; text-transform: uppercase; color: var(--muted);
+}
+.expedition-body { flex: 1 1 auto; min-width: 0; }
+.expedition-body .role-head { margin-bottom: 4px; }
+
 /* ── Stat row ────────────────────────────────────── */
 .stat-row {
   display: flex; flex-wrap: wrap; gap: 32px;
@@ -299,6 +319,8 @@ a:focus-visible, button:focus-visible { outline: 2px solid var(--ink); outline-o
   .skill-grid { grid-template-columns: 1fr; }
   .role-head .dates { margin-left: 0; }
   .portfolio-grid { grid-template-columns: 1fr; }
+  .expedition { flex-direction: column; gap: 14px; }
+  .expedition-media { width: 160px; }
   .page-header { padding: 64px 24px 52px; }
 }
 
