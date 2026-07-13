@@ -24,7 +24,7 @@ const projects = [
   {
     title: 'Portfolio Site',
     tags: 'React · JavaScript · CSS',
-    description: 'This site — a single-page React application with a custom design system.',
+    description: 'This site: a single-page React application with a custom design system.',
     href: 'https://www.github.com/harryhamlin',
     repo: 'https://www.github.com/harryhamlin',
     image: photo,

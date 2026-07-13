@@ -97,7 +97,7 @@ export default function CV() {
           <p className="section-label">Experience</p>
 
           <div className="role">
-            <div className="role-head"><h3>Director of Operations / General Manager</h3><span className="dates">Jan 2021 — June 2026</span></div>
+            <div className="role-head"><h3>Director of Operations / General Manager</h3><span className="dates">Jan 2021 – June 2026</span></div>
             <p className="org">International Mountain Guides · Ashford, WA</p>
             <ul>
               <li>Full P&amp;L and operational leadership of a premier international guide service: hiring, training, performance management, and development for a 40+ person team of guides, administrators, and contractors.</li>
@@ -111,7 +111,7 @@ export default function CV() {
           </div>
 
           <div className="role">
-            <div className="role-head"><h3>Senior Supervising Guide / Everest Expedition Team Leader</h3><span className="dates">Jun 2016 — Jan 2021</span></div>
+            <div className="role-head"><h3>Senior Supervising Guide / Everest Expedition Team Leader</h3><span className="dates">Jun 2016 – Jan 2021</span></div>
             <p className="org">International Mountain Guides</p>
             <ul>
               <li>Led teams of 2–10 guides and staff in extreme, high-consequence environments, managing risk, expectations, and wellbeing for staff and clientele in hyper objective-based guiding.</li>
@@ -123,8 +123,8 @@ export default function CV() {
           <div className="role">
             <div className="role-head"><h3>Additional Leadership</h3></div>
             <ul>
-              <li><b>Shift Supervisor</b>, Crystal Mountain Ski Patrol · 2014 — 2019</li>
-              <li><b>Avalanche Education Course Leader</b>, AIARE · 2017 — Present</li>
+              <li><b>Shift Supervisor</b>, Crystal Mountain Ski Patrol · 2014 – 2019</li>
+              <li><b>Avalanche Education Course Leader</b>, AIARE · 2017 – Present</li>
             </ul>
           </div>
         </section>
@@ -135,25 +135,25 @@ export default function CV() {
           <div className="case">
             <h3>Overhauling a decades-old pay system</h3>
             <p className="case-tags">Compensation design · Data modeling · Change management · Compliance</p>
-            <p><span className="lbl">Situation</span>Regulators were pressuring us to replace an entrenched day-rate pay structure with one compliant with Washington L&amp;I record-keeping and minimum-wage requirements, plus the employment rules that apply to federal contractors — all without alienating a trepidatious workforce.</p>
-            <p><span className="lbl">Approach</span>I ran a months-long timeclock study to establish real average hours by job type, then backed out a tiered hourly wage structure — seniority- and responsibility-weighted — that defensibly compared to the old system. I built a payroll forecast model against the following year's sold programs, held it within an approved percentage of prior-year costs, and ran the rewritten policy through a Washington employment lawyer. Rollout happened through round-table sessions with worked pay comparisons and open Q&amp;A.</p>
+            <p><span className="lbl">Situation</span>Regulators were pressuring us to replace an entrenched day-rate pay structure with one compliant with Washington L&amp;I record-keeping and minimum-wage requirements, plus the employment rules that apply to federal contractors, all without alienating a trepidatious workforce.</p>
+            <p><span className="lbl">Approach</span>I ran a months-long timeclock study to establish real average hours by job type, then backed out a tiered hourly wage structure (seniority- and responsibility-weighted) that defensibly compared to the old system. I built a payroll forecast model against the following year's sold programs, held it within an approved percentage of prior-year costs, and ran the rewritten policy through a Washington employment lawyer. Rollout happened through round-table sessions with worked pay comparisons and open Q&amp;A.</p>
             <p className="outcome"><span className="lbl">Outcome</span>The rollout landed: payroll costs tracked forecast, employee acceptance held through the transition, and the structure was subsequently mimicked by much of the industry.</p>
           </div>
 
           <div className="case">
             <h3>Solving a race condition in program registration</h3>
             <p className="case-tags">Systems design · Concurrency · Customer experience</p>
-            <p><span className="lbl">Situation</span>Our product releases triggered a purchase rush that risked overbooking the most desirable programs — a direct hit to customer satisfaction on our flagship offerings.</p>
-            <p><span className="lbl">Approach</span>Working within the constraints of the platforms involved (AirTable, DocuSign, Zapier), I designed the checkout to minimize the exposure window of an available spot to the 20–30 seconds a customer spends entering critical information — the closest achievable approximation of mutual exclusion that still captured prospect data for marketing. If two customers cleared the gate for the same last spot, the system halted before issuing DocuSigns or opening the payment gateway, routing both to white-glove manual handling under a last-writer-wins policy.</p>
-            <p className="outcome"><span className="lbl">Outcome</span>Only four customers across two "last spots" ever hit the gate — a 2% overbooking rate at launch — all resolved manually without friction. Subsequent API updates and strategic release timing drove the rate down further over the following three years.</p>
+            <p><span className="lbl">Situation</span>Our product releases triggered a purchase rush that risked overbooking the most desirable programs, a direct hit to customer satisfaction on our flagship offerings.</p>
+            <p><span className="lbl">Approach</span>Working within the constraints of the platforms involved (AirTable, DocuSign, Zapier), I designed the checkout to minimize the exposure window of an available spot to the 20–30 seconds a customer spends entering critical information, the closest achievable approximation of mutual exclusion that still captured prospect data for marketing. If two customers cleared the gate for the same last spot, the system halted before issuing DocuSigns or opening the payment gateway, routing both to white-glove manual handling under a last-writer-wins policy.</p>
+            <p className="outcome"><span className="lbl">Outcome</span>Only four customers across two "last spots" ever hit the gate (a 2% overbooking rate at launch), all resolved manually without friction. Subsequent API updates and strategic release timing drove the rate down further over the following three years.</p>
           </div>
 
           <div className="case">
             <h3>Ending a climbing season early</h3>
             <p className="case-tags">Crisis decision-making · Financial analysis · Communications</p>
-            <p><span className="lbl">Situation</span>Deteriorating conditions, competitor departures, and pointed public remarks from the park put the remainder of the season in doubt — despite our own assessment that conditions remained safely climbable.</p>
+            <p><span className="lbl">Situation</span>Deteriorating conditions, competitor departures, and pointed public remarks from the park put the remainder of the season in doubt, despite our own assessment that conditions remained safely climbable.</p>
             <p><span className="lbl">Approach</span>I quantified the decision for ownership: net unrealized profit on cancelled programs as a share of expected summer profits (~10%). Given the publicity risk, we ended early. Because holding deposits incurred the least processing cost, I built an incentive giving deposit-holders first pick of desirable future programs, stood up a registration portal for client preferences, briefed staff with a reference memo, updated marketing copy across web and social, and communicated directly with every affected client.</p>
-            <p className="outcome"><span className="lbl">Outcome</span>~25% of deposits stayed on hold and a further 50% of affected clients re-registered the following summer — interest on retained deposits offset losses, and the communication held customer trust through a cancellation event.</p>
+            <p className="outcome"><span className="lbl">Outcome</span>~25% of deposits stayed on hold and a further 50% of affected clients re-registered the following summer; interest on retained deposits offset losses, and the communication held customer trust through a cancellation event.</p>
           </div>
 
           <div className="case">
@@ -168,16 +168,16 @@ export default function CV() {
             <h3>Real-time labor cost modeling</h3>
             <p className="case-tags">Forecasting · Excel modeling · Cost control</p>
             <p><span className="lbl">Situation</span>The new pay system introduced payroll uncertainty; overtime needed to be minimized and budget targets defended.</p>
-            <p><span className="lbl">Approach</span>I built a model that monitored our scheduling program for changes and forecast weekly payroll — total and overtime — by combining per-day best guesses with the results of a year-long logged-hours study, benchmarked against prior-year actuals and current budgets. The CFO and I used it as a live scheduling monitor.</p>
+            <p><span className="lbl">Approach</span>I built a model that monitored our scheduling program for changes and forecast weekly payroll (total and overtime) by combining per-day best guesses with the results of a year-long logged-hours study, benchmarked against prior-year actuals and current budgets. The CFO and I used it as a live scheduling monitor.</p>
             <p className="outcome"><span className="lbl">Outcome</span>Forecasts landed within 5% of real payroll costs, and the model was extended through subsequent pay-system updates for year-over-year monitoring.</p>
           </div>
 
           <div className="case">
             <h3>Pricing to demand elasticity</h3>
             <p className="case-tags">Pricing strategy · Market analysis · Revenue growth</p>
-            <p><span className="lbl">Situation</span>When I took over, the product catalog sold out within a month of release — a clear signal of underpricing and missed revenue.</p>
-            <p><span className="lbl">Approach</span>Each annual cycle I forecast the remainder of the fiscal year's costs, gathered competitive intelligence on high- and low-end market moves, analyzed our sales response to prior increases, factored inflation and CPI, and brought ownership to a pricing decision — then coordinated staff on marketing updates and land-manager submissions.</p>
-            <p className="outcome"><span className="lbl">Outcome</span>Five years in, we sold ~90% of catalog at a 30% revenue increase — reaching price elasticity and effectively maximizing revenue through pricing alone.</p>
+            <p><span className="lbl">Situation</span>When I took over, the product catalog sold out within a month of release, a clear signal of underpricing and missed revenue.</p>
+            <p><span className="lbl">Approach</span>Each annual cycle I forecast the remainder of the fiscal year's costs, gathered competitive intelligence on high- and low-end market moves, analyzed our sales response to prior increases, factored inflation and CPI, and brought ownership to a pricing decision, then coordinated staff on marketing updates and land-manager submissions.</p>
+            <p className="outcome"><span className="lbl">Outcome</span>Five years in, we sold ~90% of catalog at a 30% revenue increase, reaching price elasticity and effectively maximizing revenue through pricing alone.</p>
           </div>
         </section>
 
@@ -195,7 +195,7 @@ export default function CV() {
             </div>
             <div className="skill-block">
               <h3>Applied AI</h3>
-              <p>Daily working use of LLMs across the business — not a buzzword line.</p>
+              <p>Daily working use of LLMs across the business (not a buzzword line).</p>
               <div className="chips">
                 <span className="chip">Claude</span><span className="chip">ChatGPT</span><span className="chip">GitHub Copilot</span>
                 <span className="chip">AI-assisted analysis</span><span className="chip">Content workflows</span>
@@ -224,12 +224,12 @@ export default function CV() {
         <section className="page-section reveal" id="education">
           <p className="section-label">Education</p>
           <div className="edu">
-            <h3>Web Development Bootcamp — University of Washington</h3>
-            <span className="dates">Oct 2022 — May 2023</span>
+            <h3>Web Development Bootcamp · University of Washington</h3>
+            <span className="dates">Oct 2022 – May 2023</span>
             <p>200+ hours of instruction with weekly deployed projects: JavaScript, React, Node.js, MySQL, MongoDB, server-side development, and API design.</p>
           </div>
           <div className="edu">
-            <h3>B.S. Chemistry — University of Puget Sound</h3>
+            <h3>B.S. Chemistry · University of Puget Sound</h3>
             <span className="dates">May 2012</span>
             <p>Tacoma, WA</p>
           </div>
