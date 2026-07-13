@@ -16,11 +16,10 @@ const expeditions = [
     image: null,
   },
   {
-    name: 'Mount Rainier',
-    location: 'Washington, USA · 4,392m',
-    role: 'Guide · Shift Supervisor, Crystal Mountain Ski Patrol',
-    years: '2014 – 2019',
-    detail: "Years of seasonal guiding and ski patrol work on Rainier's glaciated terrain built the technical foundation — crevasse rescue, avalanche assessment, cold-weather operations — for leading teams at altitude worldwide.",
+    name: 'Lhotse',
+    location: 'Nepal / Tibet · 8,516m',
+    role: 'Guide',
+    detail: "The world's fourth-highest peak, sharing its lower route with Everest before splitting off through the Lhotse Face and Couloir — steep, sustained ice climbing above 8,000m.",
     image: null,
   },
   {
@@ -31,10 +30,32 @@ const expeditions = [
     image: null,
   },
   {
+    name: 'Mount Rainier',
+    location: 'Washington, USA · 4,392m',
+    role: 'Guide · Shift Supervisor, Crystal Mountain Ski Patrol',
+    years: '2014 – 2019',
+    detail: "Years of seasonal guiding and ski patrol work on Rainier's glaciated terrain built the technical foundation — crevasse rescue, avalanche assessment, cold-weather operations — for leading teams at altitude worldwide.",
+    image: null,
+  },
+  {
+    name: 'Aconcagua',
+    location: 'Argentina · 6,961m',
+    role: 'Guide',
+    detail: 'The highest peak in the Americas and the Southern and Western Hemispheres — a high-altitude expedition demanding careful acclimatization and endurance through extreme wind exposure.',
+    image: null,
+  },
+  {
     name: 'Kilimanjaro',
     location: 'Tanzania · 5,895m',
     role: 'Guide',
     detail: "Africa's highest summit — a high-altitude, non-technical ascent testing client pacing, acclimatization protocol, and team management over multi-day routes.",
+    image: null,
+  },
+  {
+    name: 'Illimani',
+    location: 'Bolivia · 6,438m',
+    role: 'Guide',
+    detail: "The highest peak in Bolivia's Cordillera Real, requiring glacier travel and crevasse navigation on approach to a summit overlooking La Paz.",
     image: null,
   },
 ];
