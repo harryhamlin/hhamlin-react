@@ -37,7 +37,7 @@ export default function Nav({ currentPage, pageChangeHandler }) {
             {label}
           </button>
         ))}
-        <a
+        {/* <a
           className="nav-link"
           href="https://harryhamlin.github.io/hhamlin/cvharryhamlin.html"
           
@@ -45,7 +45,7 @@ export default function Nav({ currentPage, pageChangeHandler }) {
           rel="noreferrer"
         >
           PDF ↗
-        </a>
+        </a> */}
       </div>
     </nav>
   );
