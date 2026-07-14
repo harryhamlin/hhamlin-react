@@ -1,4 +1,5 @@
 import React from 'react';
+import headshotPhoto from '../images/headshot-2.jpg';
 
 const PAGE_META = {
   about: {
@@ -31,7 +32,12 @@ export default function Header({ currentPage }) {
     <header className="page-header">
       <div className="page-header-inner">
         <p className="page-header-eyebrow">{meta.eyebrow}</p>
-        <h1 className="page-header-title">{meta.title}</h1>
+        <div className="page-header-row">
+          <h1 className="page-header-title">{meta.title}</h1>
+          {currentPage === 'about' && (
+            <img className="about-headshot" src={headshotPhoto} alt={meta.title} />
+          )}
+        </div>
         {meta.tagline && <p className="page-header-tagline">{meta.tagline}</p>}
       </div>
     </header>

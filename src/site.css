@@ -80,6 +80,10 @@ a:focus-visible, button:focus-visible { outline: 2px solid var(--ink); outline-o
   font-size: 11px; letter-spacing: .14em; text-transform: uppercase;
   color: var(--muted); margin-bottom: 24px;
 }
+.page-header-row {
+  display: flex; align-items: center; justify-content: space-between;
+  gap: 24px;
+}
 .page-header-title {
   font-family: "Barlow Condensed", sans-serif; font-weight: 700;
   font-size: clamp(48px, 7.5vw, 80px); letter-spacing: .01em;
@@ -184,6 +188,15 @@ a:focus-visible, button:focus-visible { outline: 2px solid var(--ink); outline-o
 }
 .expedition-body { flex: 1 1 auto; min-width: 0; }
 .expedition-body .role-head { margin-bottom: 4px; }
+
+/* ── About headshot ─────────────────────────────── */
+.about-headshot {
+  flex: 0 0 auto;
+  width: 132px; height: 132px; border-radius: 50%;
+  object-fit: cover; object-position: center top;
+  filter: grayscale(40%);
+  margin-bottom: 20px;
+}
 
 /* ── Stat row ────────────────────────────────────── */
 .stat-row {
