@@ -20,14 +20,14 @@ const expeditions = [
     name: 'Lhotse',
     location: 'Nepal / Tibet · 8,516m',
     role: 'Guide',
-    detail: "The world's fourth-highest peak, sharing its lower route with Everest before splitting off through the Lhotse Face and Couloir for steep, sustained ice climbing above 8,000m.",
+    detail: "The world's fourth-highest peak, sharing its lower route with Everest before splitting off through the Lhotse Face and Couloir for steep, sustained steep snow climbing above 8,000m.",
     image: lhotsePhoto,
   },
   {
     name: 'Ama Dablam',
     location: 'Nepal · 6,812m',
     role: 'Guide',
-    detail: 'One of the most technical peaks on the standard Himalayan guiding circuit, requiring sustained rock and ice climbing above 6,000m.',
+    detail: 'One of the most technical peaks on the standard Himalayan guiding circuit, requiring sustained vertical rock and ice climbing above 6,000m.',
     image: amaDablamPhoto,
   },
   {
@@ -70,8 +70,7 @@ export default function Climbing() {
           I spent a decade leading climbers on the world's highest peaks, closing my guiding
           career as Senior Supervising Guide and Everest Expedition Team Leader. That work meant
           managing risk, logistics, and the wellbeing of staff and clients in genuinely
-          high-consequence environments: sustained decision-making with no do-overs, at altitude,
-          in weather, under time pressure.
+          high-consequence environments.
         </p>
       </section>
 
