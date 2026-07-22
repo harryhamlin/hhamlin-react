@@ -22,6 +22,11 @@ const PAGE_META = {
     title: 'Contact',
     tagline: null,
   },
+  climbingTest: {
+    eyebrow: 'Expedition record',
+    title: 'Climbing Test',
+    tagline: 'A decade guiding climbers on some of the world’s highest and most technical peaks.',
+  },
 };
 
 export default function Header({ currentPage }) {

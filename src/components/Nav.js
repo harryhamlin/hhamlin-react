@@ -4,6 +4,7 @@ const links = [
   { key: 'about',     label: 'About' },
   // { key: 'portfolio', label: 'Portfolio' },
   { key: 'climbing',  label: 'Climbing' },
+  { key: 'climbingTest', label: 'Climbing Test' },
   { key: 'contact',   label: 'Contact' },
   { key: 'CV',        label: 'CV' },
 ];
