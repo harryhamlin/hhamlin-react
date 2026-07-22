@@ -1,5 +1,15 @@
 import React from 'react';
+import { useLocation } from 'react-router-dom';
 import headshotPhoto from '../images/headshot-2.jpg';
+
+const PATH_TO_KEY = {
+  '/': 'about',
+  '/about': 'about',
+  '/portfolio': 'portfolio',
+  '/climbing': 'climbing',
+  '/contact': 'contact',
+  '/cv': 'cv',
+};
 
 const PAGE_META = {
   about: {
@@ -22,16 +32,14 @@ const PAGE_META = {
     title: 'Contact',
     tagline: null,
   },
-  climbingTest: {
-    eyebrow: 'Expedition record',
-    title: 'Climbing Test',
-    tagline: 'A decade guiding climbers on some of the world’s highest and most technical peaks.',
-  },
 };
 
-export default function Header({ currentPage }) {
-  if (currentPage === 'CV') return null;
-  const meta = PAGE_META[currentPage] || PAGE_META.about;
+export default function Header() {
+  const { pathname } = useLocation();
+  const key = PATH_TO_KEY[pathname] || 'about';
+
+  if (key === 'cv') return null;
+  const meta = PAGE_META[key];
 
   return (
     <header className="page-header">
@@ -39,7 +47,7 @@ export default function Header({ currentPage }) {
         <p className="page-header-eyebrow">{meta.eyebrow}</p>
         <div className="page-header-row">
           <h1 className="page-header-title">{meta.title}</h1>
-          {currentPage === 'about' && (
+          {key === 'about' && (
             <img className="about-headshot" src={headshotPhoto} alt={meta.title} />
           )}
         </div>

@@ -1,4 +1,5 @@
-import React, { useState, useEffect } from 'react';
+import React, { useEffect } from 'react';
+import { Routes, Route, Navigate, useLocation } from 'react-router-dom';
 import './site.css';
 import Nav from './components/Nav';
 import Header from './components/Header';
@@ -8,35 +9,37 @@ import Contact from './components/Contact';
 import Footer from './components/Footer';
 import CV from './components/CV';
 import Climbing from './components/Climbing';
-import ClimbingTest from './components/ClimbingTest';
 
 export default function App() {
-  const [currentPage, setCurrentPage] = useState('about');
+  const location = useLocation();
 
+  // Re-run the scroll reveal on every route change.
   useEffect(() => {
     const obs = new IntersectionObserver((entries) => {
-      entries.forEach(e => {
-        if (e.isIntersecting) { e.target.classList.add('in'); obs.unobserve(e.target); }
+      entries.forEach((e) => {
+        if (e.isIntersecting) {
+          e.target.classList.add('in');
+          obs.unobserve(e.target);
+        }
       });
     }, { threshold: .08 });
-    document.querySelectorAll('.reveal').forEach(el => obs.observe(el));
+    document.querySelectorAll('.reveal').forEach((el) => obs.observe(el));
     return () => obs.disconnect();
-  }, [currentPage]);
-
-  const renderPage = () => {
-    if (currentPage === 'about') return <About />;
-    if (currentPage === 'portfolio') return <Body />;
-    if (currentPage === 'climbing') return <Climbing />;
-    if (currentPage === 'climbingTest') return <ClimbingTest />;
-    if (currentPage === 'contact') return <Contact />;
-    if (currentPage === 'CV') return <CV />;
-  };
+  }, [location.pathname]);
 
   return (
     <>
-      <Nav currentPage={currentPage} pageChangeHandler={setCurrentPage} />
-      <Header currentPage={currentPage} />
-      {renderPage()}
+      <Nav />
+      <Header />
+      <Routes>
+        <Route path="/" element={<About />} />
+        <Route path="/about" element={<About />} />
+        <Route path="/portfolio" element={<Body />} />
+        <Route path="/climbing" element={<Climbing />} />
+        <Route path="/contact" element={<Contact />} />
+        <Route path="/cv" element={<CV />} />
+        <Route path="*" element={<Navigate to="/" replace />} />
+      </Routes>
       <Footer />
     </>
   );

@@ -1,25 +1,24 @@
 import React, { useState } from 'react';
+import { Link, useLocation } from 'react-router-dom';
 
 const links = [
-  { key: 'about',     label: 'About' },
-  // { key: 'portfolio', label: 'Portfolio' },
-  { key: 'climbing',  label: 'Climbing' },
-  { key: 'climbingTest', label: 'Climbing Test' },
-  { key: 'contact',   label: 'Contact' },
-  { key: 'CV',        label: 'CV' },
+  { to: '/about',     label: 'About' },
+  // { to: '/portfolio', label: 'Portfolio' },
+  { to: '/climbing',  label: 'Climbing' },
+  { to: '/contact',   label: 'Contact' },
+  { to: '/cv',        label: 'CV' },
 ];
 
-export default function Nav({ currentPage, pageChangeHandler }) {
+export default function Nav() {
   const [menuOpen, setMenuOpen] = useState(false);
+  const { pathname } = useLocation();
 
-  const handleNav = (key) => {
-    pageChangeHandler(key);
-    setMenuOpen(false);
-  };
+  // Treat "/" as the About page for active styling.
+  const activePath = pathname === '/' ? '/about' : pathname;
 
   return (
     <nav className="site-nav" role="navigation" aria-label="main navigation">
-      <span className="brand">Harry Hamlin</span>
+      <Link className="brand" to="/about">Harry Hamlin</Link>
       <button
         className="nav-burger"
         aria-label="toggle menu"
@@ -29,19 +28,19 @@ export default function Nav({ currentPage, pageChangeHandler }) {
         <span /><span /><span />
       </button>
       <div className={`nav-links${menuOpen ? ' open' : ''}`}>
-        {links.map(({ key, label }) => (
-          <button
-            key={key}
-            className={`nav-link${currentPage === key ? ' active' : ''}`}
-            onClick={() => handleNav(key)}
+        {links.map(({ to, label }) => (
+          <Link
+            key={to}
+            className={`nav-link${activePath === to ? ' active' : ''}`}
+            to={to}
+            onClick={() => setMenuOpen(false)}
           >
             {label}
-          </button>
+          </Link>
         ))}
         {/* <a
           className="nav-link"
           href="https://harryhamlin.github.io/hhamlin/cvharryhamlin.html"
-          
           target="_blank"
           rel="noreferrer"
         >
