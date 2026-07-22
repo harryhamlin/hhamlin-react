@@ -133,7 +133,7 @@ export default function ClimbingTest() {
         if (cancelled || !mapEl.current || mapEl.current._leaflet_id) return;
 
         map = L.map(mapEl.current, { scrollWheelZoom: true, worldCopyJump: true });
-        L.tileLayer('https://{s}.basemap.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png', {
+        L.tileLayer('https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png', {
           subdomains: 'abcd',
           maxZoom: 19,
           attribution: '&copy; OpenStreetMap contributors &copy; CARTO',
