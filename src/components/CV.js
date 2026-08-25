@@ -197,7 +197,7 @@ export default function CV() {
               <h3>Applied AI</h3>
               <p>Daily working use of LLMs across the business.</p>
               <div className="chips">
-                <span className="chip">Claude</span><span className="chip">ChatGPT</span><span className="chip">GitHub Copilot</span>
+                <span className="chip">Claude</span><span className="chip">ChatGPT</span><span className="chip">Claude Code</span>
                 <span className="chip">AI-assisted analysis</span><span className="chip">Content workflows</span>
               </div>
             </div>
