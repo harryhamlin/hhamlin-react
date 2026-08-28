@@ -138,12 +138,11 @@ export default function Climbing() {
           maxBounds: [[-85, -180], [85, 180]],
           maxBoundsViscosity: 1,
         });
-        L.tileLayer('https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png', {
-          subdomains: 'abcd',
-          maxZoom: 19,
+        L.tileLayer('https://services.arcgisonline.com/ArcGIS/rest/services/Canvas/World_Dark_Gray_Base/MapServer/tile/{z}/{y}/{x}', {
+          maxZoom: 16,
           noWrap: true,
           bounds: [[-85, -180], [85, 180]],
-          attribution: '&copy; OpenStreetMap contributors &copy; CARTO',
+          attribution: '&copy; Esri &mdash; Esri, DeLorme, NAVTEQ',
         }).addTo(map);
 
         const icon = L.divIcon({
