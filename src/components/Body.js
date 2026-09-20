@@ -5,7 +5,7 @@ import photo from '../images/cherryblossoms.jpg';
 const projects = [
   {
     title: 'Client Registration System',
-    tags: 'AirTable · DocuSign · Zapier · JavaScript',
+    tags: 'Airtable · DocuSign · Zapier · JavaScript',
     description: 'Multi-platform registration and payment system with concurrency handling for high-demand program releases.',
     href: 'https://www.github.com/harryhamlin',
     repo: 'https://www.github.com/harryhamlin',

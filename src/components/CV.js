@@ -77,7 +77,7 @@ export default function CV() {
         <div className="page-header-inner">
           <p className="page-header-eyebrow">Seattle, WA</p>
           <h1 className="page-header-title">Harry Hamlin</h1>
-          <p className="page-header-tagline">Operations Executive and Technical Leader</p>
+          <p className="page-header-tagline">Operations and Management Leader</p>
           <div className="page-header-contact">
             <a href="mailto:harryhamlin@gmail.com">harryhamlin@gmail.com</a>
             <span>Seattle, WA</span>
@@ -88,7 +88,7 @@ export default function CV() {
       <main className="page-main cv-page">
         <section className="page-section reveal" id="profile">
           <p className="section-label">Profile</p>
-          <p>I spent a decade leading climbers on the world's highest peaks before taking over day-to-day leadership of International Mountain Guides, one of the most renowned guide services in the world. As Director of Operations and General Manager, I ran a 40+ person operation while personally architecting the company's registration, payments, and labor-forecasting infrastructure.</p>
+          <p>I spent nearly a decade leading climbers on the world's highest peaks before taking over day-to-day leadership of International Mountain Guides, one of the most renowned guide services in the world. As Director of Operations and General Manager, I ran a seasonal operation of up to 40 guides and six administrative staff while personally architecting the company's registration, payments, and labor-forecasting infrastructure.</p>
           <p style={{ marginTop: '18px' }}>That combination is the through-line of my career: high-consequence leadership paired with hands-on systems building. I write production JavaScript, design data models, and use AI tools daily: for code, for marketing content, for customer communications, and for the analytical models that drive pricing and payroll decisions. Whether the problem is a race condition in a checkout flow or a contentious compensation overhaul, my approach is the same: gather real data, build a defensible system, and bring the team along.</p>
         </section>
 
@@ -96,13 +96,14 @@ export default function CV() {
           <p className="section-label">Experience</p>
 
           <div className="role">
-            <div className="role-head"><h3>Director of Operations / General Manager</h3><span className="dates">Jan 2021 – June 2026</span></div>
+            <div className="role-head"><h3>Director of Operations / General Manager</h3><span className="dates">Jan 2021 – Jun 2026</span></div>
             <p className="org">International Mountain Guides · Ashford, WA</p>
             <ul>
-              <li>Full P&amp;L and operational leadership of a premier international guide service: hiring, training, performance management, and development for a 40+ person team of guides, administrators, and contractors.</li>
-              <li>Achieved <b>20% year-over-year growth</b> through new product development, data-informed pricing, and targeted marketing; grew total revenue <b>30% over five years</b> by pricing to demand elasticity, moving the catalog from selling out in a month to a controlled ~90% annual sell-through.</li>
+              <li>Full P&amp;L and operational leadership of a premier international guide service: hiring, onboarding, scheduling, training, performance management, and supervisor development for up to <b>40 seasonal guides and six administrative staff</b>.</li>
+              <li>Grew revenue <b>30% over five years</b> through new product development, data-informed pricing, and targeted marketing, moving the catalog from selling out within weeks of release to a controlled <b>85–90% annual sell-through</b> over a longer sales cycle.</li>
               <li>Designed and rolled out an industry-first overhaul of a decades-old day-rate pay system, and similar structures were subsequently adopted elsewhere in the industry. Full story below.</li>
               <li>Architected the company's customer registration system, payment processing migration, and real-time labor cost model; directed PCI-compliant payments, cybersecurity implementation, and a back-end email migration enabling CRM integration.</li>
+              <li>Improved measured customer satisfaction <b>40%</b> and retention <b>5%</b> through process redesign, clearer customer communications, and stronger internal handoffs.</li>
               <li>Integrated AI tools into daily operations: LLM coding assistants for internal system development, AI-assisted marketing informed by customer engagement data, AI-drafted customer communications at scale, and AI-assisted analysis in forecasting and pricing work.</li>
               <li>Developed COVID-19 operating policy in collaboration with government agencies, physicians, and industry partners; ensured compliance with federal contracting and land-use permit regulations while maximizing performance.</li>
               <li>Handled sensitive personnel matters, including terminations, restructuring, difficult negotiations; with documented process and follow-through that preserved morale and key relationships.</li>
@@ -123,7 +124,7 @@ export default function CV() {
             <div className="role-head"><h3>Additional Leadership</h3></div>
             <ul>
               <li><b>Shift Supervisor</b>, Crystal Mountain Ski Patrol · 2014 – 2019</li>
-              <li><b>Avalanche Education Course Leader</b>, AIARE · 2017 – Present</li>
+              <li><b>Avalanche Education Course Leader</b>, AIARE · 2017 – 2021</li>
             </ul>
           </div>
         </section>
@@ -143,7 +144,7 @@ export default function CV() {
             <h3>Solving a race condition in program registration</h3>
             <p className="case-tags">Systems design · Concurrency · Customer experience</p>
             <p><span className="lbl">Situation</span>Our product releases triggered a purchase rush that risked overbooking the most desirable programs, a direct hit to customer satisfaction on our flagship offerings.</p>
-            <p><span className="lbl">Approach</span>Working within the constraints of the platforms involved (AirTable, DocuSign, Zapier), I designed the checkout to minimize the exposure window of an available spot to the 20–30 seconds a customer spends entering critical information, the closest achievable approximation of mutual exclusion that still captured prospect data for marketing. If two customers cleared the gate for the same last spot, the system halted before issuing DocuSigns or opening the payment gateway, routing both to white-glove manual handling under a last-writer-wins policy.</p>
+            <p><span className="lbl">Approach</span>Working within the constraints of the platforms involved (Airtable, DocuSign, Zapier), I designed the checkout to minimize the exposure window of an available spot to the 20–30 seconds a customer spends entering critical information, the closest achievable approximation of mutual exclusion that still captured prospect data for marketing. If two customers cleared the gate for the same last spot, the system halted before issuing DocuSigns or opening the payment gateway, routing both to white-glove manual handling under a last-writer-wins policy.</p>
             <p className="outcome"><span className="lbl">Outcome</span>Only four customers across two last-spot conflicts ever reached the exception path; all were resolved manually without friction. Subsequent API updates and strategic release timing drove the rate down further over the following three years.</p>
           </div>
 
@@ -176,7 +177,7 @@ export default function CV() {
             <p className="case-tags">Pricing strategy · Market analysis · Revenue growth</p>
             <p><span className="lbl">Situation</span>When I took over, the product catalog sold out within a month of release, a clear signal of underpricing and missed revenue.</p>
             <p><span className="lbl">Approach</span>Each annual cycle I forecast the remainder of the fiscal year's costs, gathered competitive intelligence on high- and low-end market moves, analyzed our sales response to prior increases, factored inflation and CPI, and brought ownership to a pricing decision, then coordinated staff on marketing updates and land-manager submissions.</p>
-            <p className="outcome"><span className="lbl">Outcome</span>Five years in, we sold ~90% of catalog at a 30% revenue increase, reaching price elasticity and effectively maximizing revenue through pricing alone.</p>
+            <p className="outcome"><span className="lbl">Outcome</span>Five years in, we sold 85–90% of catalog at a 30% revenue increase, reaching price elasticity and effectively maximizing revenue through pricing alone.</p>
           </div>
         </section>
 
@@ -189,7 +190,7 @@ export default function CV() {
               <div className="chips">
                 <span className="chip">HTML/CSS</span><span className="chip">JavaScript</span><span className="chip">React</span>
                 <span className="chip">Node.js</span><span className="chip">MySQL</span><span className="chip">MongoDB</span>
-                <span className="chip">REST APIs</span><span className="chip">Bootstrap</span>
+                <span className="chip">REST APIs</span><span className="chip">Bootstrap</span><span className="chip">SQL</span>
               </div>
             </div>
             <div className="skill-block">
@@ -197,15 +198,15 @@ export default function CV() {
               <p>Daily working use of LLMs across the business.</p>
               <div className="chips">
                 <span className="chip">Claude</span><span className="chip">ChatGPT</span><span className="chip">Claude Code</span>
-                <span className="chip">AI-assisted analysis</span><span className="chip">Content workflows</span>
+                <span className="chip">AI-assisted analysis</span><span className="chip">Content workflows</span><span className="chip">GitHub Copilot</span>
               </div>
             </div>
             <div className="skill-block">
               <h3>Systems &amp; Integration</h3>
               <p>Platform integration and automation for production business systems.</p>
               <div className="chips">
-                <span className="chip">Stripe</span><span className="chip">DocuSign</span><span className="chip">AirTable</span>
-                <span className="chip">Zapier</span><span className="chip">Excel modeling</span><span className="chip">CRM</span>
+                <span className="chip">Stripe</span><span className="chip">DocuSign</span><span className="chip">Airtable</span>
+                <span className="chip">Zapier</span><span className="chip">Excel modeling</span><span className="chip">CRM</span><span className="chip">Microsoft 365 / Entra</span>
               </div>
             </div>
             <div className="skill-block">
@@ -214,7 +215,7 @@ export default function CV() {
               <div className="chips">
                 <span className="chip">PCI compliance</span><span className="chip">Federal contracting</span>
                 <span className="chip">WA labor law</span><span className="chip">Land-use permitting</span>
-                <span className="chip">Risk management</span>
+                <span className="chip">Risk management</span><span className="chip">MFA &amp; identity</span><span className="chip">Cybersecurity</span>
               </div>
             </div>
           </div>

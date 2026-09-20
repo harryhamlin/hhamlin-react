@@ -6,9 +6,9 @@ export default function About() {
       <section className="page-section reveal">
         <p className="section-label">Background</p>
         <p>
-          I spent a decade leading climbers on the world's highest peaks before taking over
+          I spent nearly a decade leading climbers on the world's highest peaks before taking over
           <strong>operational leadership</strong> and <strong>business management</strong> of International Mountain Guides through the pandemic and the growth years beyond.
-          As Director of Operations, I ran a <strong>40+ person</strong> operation while architecting and executing the
+          As Director of Operations, I ran a <strong>seasonal operation of up to 40 guides and six administrative staff</strong> while architecting and executing the
           company's registration, payments, and labor-forecasting infrastructure.
         </p>
         <p style={{ marginTop: '18px' }}>
