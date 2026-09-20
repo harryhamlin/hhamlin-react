@@ -6,6 +6,8 @@ import rainierPhoto from '../images/rainier.jpg';
 import aconcaguaPhoto from '../images/aconcagua.jpg';
 import kilimanjaroPhoto from '../images/kilimanjaro.jpg';
 import illimaniPhoto from '../images/illimani.jpg';
+import ruthGorgePhoto from '../images/ruth-gorge.jpg';
+import sardiniaPhoto from '../images/sardinia.jpg';
 
 // Climbing page: the expedition record plus an interactive map (Leaflet,
 // loaded from CDN). Each peak places a marker — hover for the summit, click
@@ -73,6 +75,24 @@ const expeditions = [
     image: illimaniPhoto,
     lat: -16.6392,
     lon: -67.7775,
+  },
+  {
+    name: 'Ruth Gorge',
+    location: 'Alaska Range, USA',
+    detail:
+      'Multi-day alpine and big-wall climbing across several peaks and routes in the Ruth Gorge, a dramatic granite-walled valley of the Alaska Range near Denali.',
+    image: ruthGorgePhoto,
+    lat: 62.9167,
+    lon: -150.6667,
+  },
+  {
+    name: 'Sardinia',
+    location: 'Italy',
+    detail:
+      'Climbed across multiple crags on the island, from limestone sport routes on the Golfo di Orosei coastline to multi-pitch lines in the Supramonte.',
+    image: sardiniaPhoto,
+    lat: 40.279,
+    lon: 9.634,
   },
 ];
 
