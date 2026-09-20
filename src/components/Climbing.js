@@ -14,7 +14,6 @@ const expeditions = [
   {
     name: 'Mount Everest',
     location: 'Nepal / Tibet · 8,849m',
-    years: '2016 – 2021',
     detail:
       "Led expedition teams on the world's highest peak, managing risk, logistics, and client and staff wellbeing in a hyper objective-based guiding environment. Directed high-hazard rescues when required.",
     image: everestPhoto,
@@ -42,9 +41,8 @@ const expeditions = [
   {
     name: 'Mount Rainier',
     location: 'Washington, USA · 4,392m',
-    years: '2014 – 2019',
     detail:
-      "40+ summits. Years of seasonal guiding and ski patrol work on Rainier's glaciated terrain built the technical foundation (crevasse rescue, avalanche assessment, cold-weather operations) for leading teams at altitude worldwide.",
+      "50+ summits. Years of seasonal guiding and ski patrol work on Rainier's glaciated terrain built the technical foundation (crevasse rescue, avalanche assessment, cold-weather operations) for leading teams at altitude worldwide.",
     image: rainierPhoto,
     lat: 46.8523,
     lon: -121.7603,
@@ -232,7 +230,6 @@ export default function Climbing() {
             <div className="expedition-body">
               <div className="role-head">
                 <h3>{peak.name}</h3>
-                {peak.years && <span className="dates">{peak.years}</span>}
               </div>
               <p className="org">{peak.location}</p>
               <p>{peak.detail}</p>
@@ -258,7 +255,6 @@ export default function Climbing() {
               <div className="cbody">
                 <div className="role-head">
                   <h3>{selected.name}</h3>
-                  {selected.years && <span className="dates">{selected.years}</span>}
                 </div>
                 <p className="org">{selected.location}</p>
                 <p className="detail">{selected.detail}</p>
