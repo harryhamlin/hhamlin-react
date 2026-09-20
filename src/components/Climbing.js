@@ -174,13 +174,11 @@ export default function Climbing() {
           marker.on('click', () => setSelected(peak));
         });
 
-        // Default view: exactly one copy of the world, filling the map (poles
-        // cropped rather than repeating Earth horizontally). Lock zoom-out here
-        // so the single world can't be shrunk into grey.
-        const worldBounds = L.latLngBounds([-85, -180], [85, 180]);
-        const worldZoom = map.getBoundsZoom(worldBounds, true);
-        map.setView([20, 0], worldZoom);
-        map.setMinZoom(worldZoom);
+        // Default view: fit every marker on screen with some breathing room,
+        // then lock zoom-out there so the view can't be shrunk into grey.
+        const markerBounds = L.latLngBounds(expeditions.map((p) => [p.lat, p.lon]));
+        map.fitBounds(markerBounds, { padding: [40, 40] });
+        map.setMinZoom(map.getZoom());
       })
       .catch(() => {
         /* Leaflet failed to load (offline / CDN blocked); map stays empty. */

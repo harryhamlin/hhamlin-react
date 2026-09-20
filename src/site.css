@@ -382,7 +382,7 @@ a:focus-visible, button:focus-visible { outline: 2px solid var(--ink); outline-o
 }
 .exmap-leaflet {
   width: 96vw; margin-left: calc(50% - 48vw);
-  height: 72vh; min-height: 420px;
+  height: 82vh; min-height: 480px;
   border-top: 1px solid var(--hairline); border-bottom: 1px solid var(--hairline);
   background: #0d1b24; z-index: 1;
 }
