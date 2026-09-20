@@ -14,7 +14,6 @@ const expeditions = [
   {
     name: 'Mount Everest',
     location: 'Nepal / Tibet · 8,849m',
-    role: 'Senior Supervising Guide · Expedition Team Leader',
     years: '2016 – 2021',
     detail:
       "Led expedition teams on the world's highest peak, managing risk, logistics, and client and staff wellbeing in a hyper objective-based guiding environment. Directed high-hazard rescues when required.",
@@ -25,7 +24,6 @@ const expeditions = [
   {
     name: 'Lhotse',
     location: 'Nepal / Tibet · 8,516m',
-    role: 'Guide',
     detail:
       "The world's fourth-highest peak, sharing its lower route with Everest before splitting off through the Lhotse Face and Couloir for steep, sustained ice climbing above 8,000m.",
     image: lhotsePhoto,
@@ -35,7 +33,6 @@ const expeditions = [
   {
     name: 'Ama Dablam',
     location: 'Nepal · 6,812m',
-    role: 'Guide',
     detail:
       'One of the most technical peaks on the standard Himalayan guiding circuit, requiring sustained rock and ice climbing above 6,000m.',
     image: amaDablamPhoto,
@@ -45,7 +42,6 @@ const expeditions = [
   {
     name: 'Mount Rainier',
     location: 'Washington, USA · 4,392m',
-    role: 'Guide · Shift Supervisor, Crystal Mountain Ski Patrol',
     years: '2014 – 2019',
     detail:
       "40+ summits. Years of seasonal guiding and ski patrol work on Rainier's glaciated terrain built the technical foundation (crevasse rescue, avalanche assessment, cold-weather operations) for leading teams at altitude worldwide.",
@@ -56,7 +52,6 @@ const expeditions = [
   {
     name: 'Aconcagua',
     location: 'Argentina · 6,961m',
-    role: 'Guide',
     detail:
       'The highest peak in the Americas and the Southern and Western Hemispheres, a high-altitude expedition demanding careful acclimatization and endurance through extreme wind exposure.',
     image: aconcaguaPhoto,
@@ -66,7 +61,6 @@ const expeditions = [
   {
     name: 'Kilimanjaro',
     location: 'Tanzania · 5,895m',
-    role: 'Guide',
     detail:
       "Africa's highest summit, a high-altitude, non-technical ascent testing client pacing, acclimatization protocol, and team management over multi-day routes.",
     image: kilimanjaroPhoto,
@@ -76,7 +70,6 @@ const expeditions = [
   {
     name: 'Illimani',
     location: 'Bolivia · 6,438m',
-    role: 'Guide',
     detail:
       "The highest peak in Bolivia's Cordillera Real, requiring glacier travel and crevasse navigation on approach to a summit overlooking La Paz.",
     image: illimaniPhoto,
@@ -196,10 +189,9 @@ export default function Climbing() {
       <section className="page-section reveal">
         <p className="section-label">Expedition Experience</p>
         <p>
-          I spent a decade leading climbers on the world's highest peaks, closing my guiding
-          career as Senior Supervising Guide and Everest Expedition Team Leader. That work meant
-          managing risk, logistics, and the wellbeing of staff and clients in genuinely
-          high-consequence environments.
+          I spent a decade leading climbers on the world's highest peaks, managing risk,
+          logistics, and the wellbeing of staff and clients in genuinely high-consequence
+          environments.
         </p>
       </section>
 
@@ -242,9 +234,7 @@ export default function Climbing() {
                 <h3>{peak.name}</h3>
                 {peak.years && <span className="dates">{peak.years}</span>}
               </div>
-              <p className="org">
-                {peak.location} · {peak.role}
-              </p>
+              <p className="org">{peak.location}</p>
               <p>{peak.detail}</p>
             </div>
           </div>
@@ -261,16 +251,18 @@ export default function Climbing() {
             <button className="close" aria-label="Close" onClick={() => setSelected(null)}>
               ×
             </button>
-            {selected.image && <img className="photo" src={selected.image} alt={selected.name} />}
-            <div className="cbody">
-              <div className="role-head">
-                <h3>{selected.name}</h3>
-                {selected.years && <span className="dates">{selected.years}</span>}
+            <div className="exmap-card-scroll">
+              {selected.image && (
+                <img className="photo" src={selected.image} alt={selected.name} />
+              )}
+              <div className="cbody">
+                <div className="role-head">
+                  <h3>{selected.name}</h3>
+                  {selected.years && <span className="dates">{selected.years}</span>}
+                </div>
+                <p className="org">{selected.location}</p>
+                <p className="detail">{selected.detail}</p>
               </div>
-              <p className="org">
-                {selected.location} · {selected.role}
-              </p>
-              <p className="detail">{selected.detail}</p>
             </div>
           </div>
         )}
