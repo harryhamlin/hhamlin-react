@@ -1,34 +1,24 @@
 import React from 'react';
 import Card from './Card';
-import photo from '../images/cherryblossoms.jpg';
+import powdertrace from '../images/powdertrace.png';
+import torchsnuffers from '../images/torchsnuffers.png';
 
 const projects = [
   {
-    title: 'Client Registration System',
-    tags: 'Airtable · DocuSign · Zapier · JavaScript',
-    description: 'Multi-platform registration and payment system with concurrency handling for high-demand program releases.',
-    href: 'https://www.github.com/harryhamlin',
-    repo: 'https://www.github.com/harryhamlin',
-    image: photo,
-    imageAlt: 'Registration system',
+    title: 'Powder Trace',
+    tags: 'SMS · Weather APIs · AI summarization',
+    description: 'SMS-based mountain weather service for backcountry travelers with limited connectivity — text a command, get an on-demand forecast, no app or account required.',
+    href: 'https://powdertrace.com',
+    image: powdertrace,
+    imageAlt: 'Powder Trace homepage',
   },
   {
-    title: 'Payroll Forecast Model',
-    tags: 'Excel · Data modeling · Labor analytics',
-    description: 'Real-time scheduling monitor forecasting weekly payroll within ±5% of actual costs.',
-    href: 'https://www.github.com/harryhamlin',
-    repo: 'https://www.github.com/harryhamlin',
-    image: photo,
-    imageAlt: 'Payroll forecast model',
-  },
-  {
-    title: 'Portfolio Site',
-    tags: 'React · JavaScript · CSS',
-    description: 'This site: a single-page React application with a custom design system.',
-    href: 'https://www.github.com/harryhamlin',
-    repo: 'https://www.github.com/harryhamlin',
-    image: photo,
-    imageAlt: 'Portfolio site',
+    title: 'Torch Snuffers',
+    tags: 'Fantasy sports · Auth · Leaderboards',
+    description: 'Fantasy competition platform for Survivor, with player leaderboards, scoring, and account management.',
+    href: 'https://torchsnuffers.com',
+    image: torchsnuffers,
+    imageAlt: 'Torch Snuffers leaderboard',
   },
 ];
 
