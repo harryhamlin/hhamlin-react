@@ -442,3 +442,56 @@ a:focus-visible, button:focus-visible { outline: 2px solid var(--ink); outline-o
   color: #fff; font-size: 18px; line-height: 1; cursor: pointer;
 }
 .exmap-card .close:hover { background: rgba(15,15,15,.85); }
+
+/* Unlinked Copenhagen coffee guide. */
+.coffee-map { height: 65vh; min-height: 360px; max-height: 720px; }
+.coffee-location-controls { display: flex; flex-wrap: wrap; align-items: center; gap: 12px 18px; margin-bottom: 18px; }
+.coffee-location-controls p { flex: 1 1 240px; margin: 0; font-size: 13px; }
+.coffee-find-me { padding: 8px 18px; border: 1px solid var(--granite); background: var(--granite); color: var(--snow); font: inherit; cursor: pointer; }
+.coffee-find-me:disabled { opacity: .55; cursor: default; }
+.coffee-legend { display: flex; flex-wrap: wrap; gap: 12px 24px; margin-bottom: 18px; font-size: 12px; }
+.coffee-legend span { display: flex; align-items: center; gap: 8px; }
+.coffee-legend i { width: 10px; height: 10px; border-radius: 50%; background: #668fa3; }
+.coffee-legend i.priority { background: #c62d2d; }
+.coffee-pin { background: none; border: none; }
+.coffee-pin span, .coffee-number { display: flex; align-items: center; justify-content: center; background: #426d80; color: #fff; border-radius: 50%; width: 30px; height: 30px; font: 600 12px "IBM Plex Mono", monospace; }
+.coffee-pin span { border: 2px solid #fff; box-shadow: 0 2px 6px #0008; }
+.coffee-pin.priority span, .coffee-number.priority { background: #c62d2d; }
+.coffee-list { display: grid; gap: 0; }
+.coffee-row { display: flex; gap: 18px; width: 100%; padding: 24px 0; border: 0; border-bottom: 1px solid var(--hairline); background: transparent; text-align: left; color: var(--text); font: inherit; cursor: pointer; }
+.coffee-row:last-child { border-bottom: 0; }
+.coffee-number { flex-shrink: 0; margin-top: 2px; }
+.coffee-name { display: block; font-weight: 600; font-size: 19px; color: var(--ink); }
+.coffee-row:hover .coffee-name { color: var(--secondary); }
+.coffee-row:focus-visible { outline: 2px solid var(--secondary); outline-offset: 4px; }
+.coffee-address { display: block; font-size: 13px; color: var(--muted); margin: 6px 0 10px; }
+.coffee-detail, .coffee-note { display: block; line-height: 1.7; }
+.coffee-note { font-size: 13px; font-weight: 600; margin-top: 8px; }
+.coffee-dialog { width: min(560px, calc(100vw - 40px)); max-height: calc(100dvh - 40px); padding: 34px; border: 1px solid var(--hairline); background: var(--snow); color: var(--text); }
+.coffee-dialog::backdrop { background: #0f0f0f9e; backdrop-filter: blur(3px); }
+.coffee-dialog h2 { font-size: 24px; margin-bottom: 16px; padding-right: 18px; }
+.coffee-dialog p { margin-bottom: 16px; }
+.coffee-close { position: absolute; top: 10px; right: 10px; width: 32px; height: 32px; border: 0; background: transparent; color: var(--ink); font-size: 24px; cursor: pointer; }
+@media (max-width: 600px) {
+  .coffee-row { gap: 12px; }
+  .coffee-dialog { padding: 28px 22px; }
+}
+/* Fixed category navigation stays available while exploring the map or list. */
+.copenhagen-nav { gap: 20px; }
+.copenhagen-nav .brand { flex-shrink: 0; }
+.copenhagen-nav-lists { display: flex; align-items: center; gap: 2px; overflow-x: auto; white-space: nowrap; min-width: 0; margin-left: auto; }
+.copenhagen-nav-lists .nav-link { flex-shrink: 0; }
+.copenhagen-nav-lists .nav-link:focus-visible { outline-color: var(--snow); outline-offset: -2px; }
+.copenhagen-pin { border: 2px solid #fff; border-radius: 50%; background: #426d80; box-shadow: 0 2px 6px #0008; }
+.copenhagen-pin.priority { background: #c62d2d; }
+.copenhagen-pin-label { position: absolute; bottom: 16px; left: 50%; transform: translateX(-50%); display: block; width: max-content; max-width: 180px; padding: 5px 8px; border: 1px solid #668fa3; border-radius: 4px; background: var(--granite); color: var(--snow); font: 500 11px/1.35 "IBM Plex Mono", monospace; text-align: center; box-shadow: 0 2px 6px #0008; }
+.copenhagen-pin.priority .copenhagen-pin-label { border-color: #c62d2d; }
+.copenhagen-pin:hover, .copenhagen-pin:focus-visible { z-index: 1000 !important; }
+.copenhagen-pin:hover .copenhagen-pin-label, .copenhagen-pin:focus-visible .copenhagen-pin-label { background: #314551; }
+@media (max-width: 600px) {
+  .copenhagen-nav { padding: 0 8px; gap: 0; }
+  .copenhagen-nav .brand { display: none; }
+  .copenhagen-nav-lists { width: 100%; margin-left: 0; gap: 0; }
+  .copenhagen-nav-lists .nav-link { padding: 8px 10px; font-size: 11px; letter-spacing: .04em; }
+  .copenhagen-pin-label { max-width: 150px; font-size: 10px; }
+}

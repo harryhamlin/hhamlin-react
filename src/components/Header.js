@@ -7,6 +7,7 @@ const PATH_TO_KEY = {
   '/about': 'about',
   '/portfolio': 'portfolio',
   '/climbing': 'climbing',
+  '/copenhagen': 'copenhagen',
   '/contact': 'contact',
   '/cv': 'cv',
 };
@@ -26,6 +27,11 @@ const PAGE_META = {
     eyebrow: 'Expedition record',
     title: 'Climbing',
     tagline: 'A decade guiding climbers on some of the world’s highest and most technical peaks.',
+  },
+  copenhagen: {
+    eyebrow: 'Saved places',
+    title: 'Copenhagen',
+    tagline: 'Coffee, food, museums, and places to explore around the city.',
   },
   contact: {
     eyebrow: 'Get in touch',

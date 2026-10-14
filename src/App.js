@@ -9,6 +9,7 @@ import Contact from './components/Contact';
 import Footer from './components/Footer';
 import CV from './components/CV';
 import Climbing from './components/Climbing';
+import Copenhagen from './components/Copenhagen';
 
 export default function App() {
   const location = useLocation();
@@ -29,13 +30,15 @@ export default function App() {
 
   return (
     <>
-      <Nav />
+      {location.pathname.replace(/\/$/, '') !== '/copenhagen' && <Nav />}
       <Header />
       <Routes>
         <Route path="/" element={<About />} />
         <Route path="/about" element={<About />} />
         <Route path="/portfolio" element={<Body />} />
         <Route path="/climbing" element={<Climbing />} />
+        <Route path="/copenhagen" element={<Copenhagen />} />
+        <Route path="/coffee" element={<Navigate to="/copenhagen?list=coffee" replace />} />
         <Route path="/contact" element={<Contact />} />
         <Route path="/cv" element={<CV />} />
         <Route path="*" element={<Navigate to="/" replace />} />

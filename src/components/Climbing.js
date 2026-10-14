@@ -1,4 +1,5 @@
 import React, { useEffect, useRef, useState } from 'react';
+import loadLeaflet from '../utils/loadLeaflet';
 import everestPhoto from '../images/everest.jpg';
 import lhotsePhoto from '../images/lhotse.jpg';
 import amaDablamPhoto from '../images/ama-dablam.jpg';
@@ -101,34 +102,6 @@ const PIN_SVG =
   '<path d="M15 0C7 0 1 6 1 14c0 9.5 14 24 14 24s14-14.5 14-24C29 6 23 0 15 0z" fill="#c62d2d" stroke="#8f1d1d" stroke-width="1"/>' +
   '<circle cx="15" cy="14" r="5" fill="#fff"/></svg>';
 
-function loadLeaflet() {
-  return new Promise((resolve, reject) => {
-    if (window.L) return resolve(window.L);
-
-    if (!document.getElementById('leaflet-css')) {
-      const link = document.createElement('link');
-      link.id = 'leaflet-css';
-      link.rel = 'stylesheet';
-      link.href = 'https://unpkg.com/leaflet@1.9.4/dist/leaflet.css';
-      document.head.appendChild(link);
-    }
-
-    const existing = document.getElementById('leaflet-js');
-    if (existing) {
-      existing.addEventListener('load', () => resolve(window.L));
-      existing.addEventListener('error', reject);
-      return;
-    }
-
-    const script = document.createElement('script');
-    script.id = 'leaflet-js';
-    script.src = 'https://unpkg.com/leaflet@1.9.4/dist/leaflet.js';
-    script.async = true;
-    script.onload = () => resolve(window.L);
-    script.onerror = reject;
-    document.body.appendChild(script);
-  });
-}
 
 export default function Climbing() {
   const mapEl = useRef(null);
