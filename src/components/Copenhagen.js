@@ -11,6 +11,13 @@ import { useSearchParams } from 'react-router-dom';
 
 const lists = {
   food: { label: 'Food', sectionTitle: 'Food & Drink', sourceUrl: foodListUrl, places: food, description: 'Restaurants, bars, and other food stops from the shared Copenhagen food list.' },
+  keld: {
+    label: 'Keld’s recommendations',
+    mapTitle: 'Keld’s Recommendations Map',
+    sourceUrl: foodListUrl,
+    places: food.filter((place) => /recommended by keld/i.test(place.note)).map((place, index) => ({ ...place, id: index + 1 })),
+    description: 'The five restaurants marked as recommended by Keld in the shared Food list.',
+  },
   eater: { label: 'Eater', sourceUrl: eaterListUrl, sourceLabel: 'Original Eater guide', places: eater, description: '38 places from Eater’s Copenhagen guide, July 2024 edition.' },
   museums: { label: 'Museums', sourceUrl: museumsListUrl, places: museums, description: 'Museums, art, gardens, and cultural stops in Copenhagen and nearby, from the shared museum list.' },
   pastries: { label: 'Pastries', sourceUrl: pastriesListUrl, places: pastries, description: 'Saved pastry stops, bakeries, and more from the shared pastry list.' },
@@ -288,7 +295,7 @@ export default function Copenhagen() {
         </div>
       </nav>
       <section className="page-section">
-        <h2 className="section-label">Copenhagen {currentList.label} Map</h2>
+        <h2 className="section-label">{currentList.mapTitle || `Copenhagen ${currentList.label} Map`}</h2>
         <p>{currentList.description}</p>
         {currentList.sourceUrl && <p><a href={currentList.sourceUrl} target="_blank" rel="noopener noreferrer">{currentList.sourceLabel || 'Original Google Maps list'} ↗</a></p>}
         <p className="exmap-hint">Click a named pin for details · scroll or drag to explore</p>

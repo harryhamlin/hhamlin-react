@@ -56,7 +56,7 @@ beforeEach(() => {
   Object.defineProperty(window, 'isSecureContext', { configurable: true, value: true });
 });
 
-test.each(['food', 'coffee', 'museums', 'pastries', 'party', 'sauna', 'eater'])(
+test.each(['food', 'coffee', 'museums', 'pastries', 'party', 'sauna', 'eater', 'keld'])(
   '%s descriptions appear in every list row and in the clicked pin details', async (key) => {
     const { container } = openPage(`/copenhagen?list=${key}`);
     await waitFor(() => expect(screen.getByRole('button', { name: 'Find me' })).toBeEnabled());
@@ -81,7 +81,7 @@ test.each(['food', 'coffee', 'museums', 'pastries', 'party', 'sauna', 'eater'])(
 
 afterEach(() => { jest.restoreAllMocks(); });
 
-const categoryButton = (key) => within(screen.getByRole('navigation', { name: 'Copenhagen lists' })).getByRole('button', { name: new RegExp(`^${key}$`, 'i') });
+const categoryButton = (key) => within(screen.getByRole('navigation', { name: 'Copenhagen lists' })).getByRole('button', { name: new RegExp(`^${key === 'keld' ? 'Keld’s recommendations' : key}$`, 'i') });
 
 const openPage = (url = '/copenhagen') => render(
   <MemoryRouter initialEntries={[url]} future={{ v7_startTransition: true, v7_relativeSplatPath: true }}>
@@ -97,7 +97,7 @@ test('switching lists replaces places and markers while preserving the location 
   expect(screen.getByText('Recommended by Keld - good for lunch')).toBeInTheDocument();
   expect(window.L.marker).toHaveBeenCalledTimes(30);
   expect(window.L.divIcon.mock.calls[0][0].html.textContent).toBe('Pompette');
-  expect(screen.getByRole('navigation', { name: 'Copenhagen lists' }).querySelectorAll('.copenhagen-nav-lists button')).toHaveLength(7);
+  expect(screen.getByRole('navigation', { name: 'Copenhagen lists' }).querySelectorAll('.copenhagen-nav-lists button')).toHaveLength(8);
   const locationClearCount = layers[1].clearLayers.mock.calls.length;
   fireEvent.click(categoryButton('Coffee'));
   expect(screen.queryByText('Pompette')).not.toBeInTheDocument();
@@ -112,6 +112,7 @@ test('switching lists replaces places and markers while preserving the location 
     ['party', 2, 'Pumpehuset'],
     ['sauna', 4, 'SaunaNor'],
     ['eater', 38, 'Jordnær'],
+    ['keld', 5, 'Primero Cocktail-Bar & Restaurant'],
   ]) {
     fireEvent.click(categoryButton(key));
     expect(categoryButton(key)).toHaveAttribute('aria-pressed', 'true');
@@ -147,6 +148,7 @@ test.each([
   ['party', 'Jolene Bar'],
   ['sauna', 'La Banchina'],
   ['eater', 'Jordnær'],
+  ['keld', 'Primero Cocktail-Bar & Restaurant'],
 ])('%s can be opened directly and links to its original list', async (key, place) => {
   openPage(`/copenhagen?list=${key}`);
   await waitFor(() => expect(screen.getByRole('button', { name: 'Find me' })).toBeEnabled());
