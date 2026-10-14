@@ -1,5 +1,6 @@
 import React, { useEffect, useRef, useState } from 'react';
 import loadLeaflet from '../utils/loadLeaflet';
+import addListMemberships from '../utils/listMemberships';
 import { roasters } from '../data/coffee';
 import { food, foodListUrl } from '../data/food';
 import { eater, eaterListUrl } from '../data/eater';
@@ -9,7 +10,7 @@ import { party, partyListUrl } from '../data/party';
 import { sauna, saunaListUrl } from '../data/sauna';
 import { useSearchParams } from 'react-router-dom';
 
-const lists = {
+const lists = addListMemberships({
   food: { label: 'Food', sectionTitle: 'Food & Drink', sourceUrl: foodListUrl, places: food, description: 'Restaurants, bars, and other food stops from the shared Copenhagen food list.' },
   keld: {
     label: 'Keld’s recommendations',
@@ -24,7 +25,7 @@ const lists = {
   party: { label: 'Party', sourceUrl: partyListUrl, places: party, description: 'Bars and music venues from the shared party list.' },
   sauna: { label: 'Sauna', sourceUrl: saunaListUrl, places: sauna, description: 'Saunas and bathing spots from the shared sauna list.' },
   coffee: { label: 'Coffee', places: roasters, description: 'Single-origin, light roasts, pour-over, and experimental processing. One representative location per roaster.' },
-};
+});
 
 // Include the northern museum trips and every saved branch in the map area.
 const allPlaces = Object.values(lists).flatMap((list) => list.places);
@@ -205,7 +206,7 @@ export default function Copenhagen() {
         label.style.bottom = `${16 + Math.floor(index / 2) * 32}px`;
       }
       const icon = L.divIcon({
-        className: `copenhagen-pin${place.priority ? ' priority' : ''}`,
+        className: `copenhagen-pin${place.priority ? ' priority' : ''}${place.shared ? ' shared' : ''}`,
         html: label,
         iconSize: [12, 12], iconAnchor: [6, 6],
       });
@@ -299,10 +300,13 @@ export default function Copenhagen() {
         <p>{currentList.description}</p>
         {currentList.sourceUrl && <p><a href={currentList.sourceUrl} target="_blank" rel="noopener noreferrer">{currentList.sourceLabel || 'Original Google Maps list'} ↗</a></p>}
         <p className="exmap-hint">Click a named pin for details · scroll or drag to explore</p>
-        {coffeeSelected && <div className="coffee-legend">
-          <span><i className="priority" />High priority</span>
-          <span><i />Other worthwhile roasters</span>
-        </div>}
+        <div className="coffee-legend">
+          <span><i className="shared" />Appears in multiple lists</span>
+          {coffeeSelected && <>
+            <span><i className="priority" />High priority</span>
+            <span><i />Other worthwhile roasters</span>
+          </>}
+        </div>
         <div className="coffee-location-controls">
           <button className="coffee-find-me" onClick={findMe} disabled={!mapReady || locating}>
             {locating ? 'Finding you…' : 'Find me'}
@@ -321,8 +325,8 @@ export default function Copenhagen() {
           <h2 className="section-label">{coffeeSelected ? (priority ? 'High Priority' : 'Other Worthwhile Roasters') : (currentList.sectionTitle || currentList.label)}</h2>
           <div className="coffee-list">
             {places.filter((place) => place.priority === priority).map((place) => (
-              <button className="coffee-row" key={place.id} onClick={() => select(place)}>
-                <span className={`coffee-number${priority ? ' priority' : ''}`}>{place.id}</span>
+              <button className={`coffee-row${place.shared ? ' shared' : ''}`} key={place.id} onClick={() => select(place)}>
+                <span className={`coffee-number${priority ? ' priority' : ''}${place.shared ? ' shared' : ''}`}>{place.id}</span>
                 <span>
                   <span className="coffee-name">{place.name}</span>
                   <span className="coffee-address">{place.address || 'Address on Google Maps'}{place.area && ` · ${place.area}`}</span>
@@ -344,6 +348,7 @@ export default function Copenhagen() {
           <button className="coffee-close" onClick={close} aria-label="Close details" autoFocus>×</button>
           <p className="section-label">{coffeeSelected ? (selected.priority ? 'High Priority' : 'Other Worthwhile Roaster') : (currentList.sectionTitle || currentList.label)} · {selected.id}</p>
           <h2 id="coffee-detail-title">{selected.name}</h2>
+          <p className="coffee-memberships"><strong>Appears in:</strong> {selected.memberships.map((list) => list.label).join(' · ')}</p>
           {(selected.address || selected.area) && <p>{selected.address}{selected.area && <><br />{selected.area}</>}</p>}
           {selected.detail && <p className="coffee-detail">{selected.detail}</p>}
           {selected.descriptionUrl && <p><a href={selected.descriptionUrl} target="_blank" rel="noopener noreferrer">About this place ↗</a></p>}

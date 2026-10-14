@@ -81,6 +81,34 @@ test.each(['food', 'coffee', 'museums', 'pastries', 'party', 'sauna', 'eater', '
 
 afterEach(() => { jest.restoreAllMocks(); });
 
+test.each([
+  ['food', 'Pompette', ['Food', 'Eater']],
+  ['food', 'Primero Cocktail-Bar & Restaurant', ['Food', 'Keld’s recommendations']],
+  ['coffee', 'Prolog Coffee Bar', ['Eater', 'Coffee']],
+  ['museums', 'ARKEN Museum of Contemporary Art', ['Museums', 'Pastries']],
+  ['sauna', 'La Banchina', ['Eater', 'Sauna']],
+])('%s shared place %s is green and names all its lists in the detail card', async (key, name, labels) => {
+  const { container } = openPage(`/copenhagen?list=${key}`);
+  await waitFor(() => expect(screen.getByRole('button', { name: 'Find me' })).toBeEnabled());
+  const row = Array.from(container.querySelectorAll('.coffee-row')).find((row) => row.querySelector('.coffee-name').textContent === name);
+  expect(row).toHaveClass('shared');
+  const index = window.L.marker.mock.calls.findIndex(([, options]) => options.alt === name);
+  expect(window.L.divIcon.mock.calls[index][0].className).toContain('shared');
+  fireEvent.click(row);
+  const membership = screen.getByRole('dialog').querySelector('.coffee-memberships');
+  expect(membership).toHaveTextContent(`Appears in: ${labels.join(' · ')}`);
+});
+
+test('a second bakery branch does not inherit another branch’s list memberships', async () => {
+  const { container } = openPage('/copenhagen?list=pastries');
+  await waitFor(() => expect(screen.getByRole('button', { name: 'Find me' })).toBeEnabled());
+  const branches = Array.from(container.querySelectorAll('.coffee-row')).filter((row) => row.querySelector('.coffee-name').textContent === 'Hart');
+  expect(branches[0]).toHaveClass('shared');
+  expect(branches[1]).not.toHaveClass('shared');
+  fireEvent.click(branches[1]);
+  expect(screen.getByRole('dialog').querySelector('.coffee-memberships')).toHaveTextContent('Appears in: Pastries');
+});
+
 const categoryButton = (key) => within(screen.getByRole('navigation', { name: 'Copenhagen lists' })).getByRole('button', { name: new RegExp(`^${key === 'keld' ? 'Keld’s recommendations' : key}$`, 'i') });
 
 const openPage = (url = '/copenhagen') => render(
@@ -93,7 +121,7 @@ test('switching lists replaces places and markers while preserving the location 
   openPage();
   await waitFor(() => expect(screen.getByRole('button', { name: 'Find me' })).toBeEnabled());
   expect(categoryButton('Food')).toHaveAttribute('aria-pressed', 'true');
-  expect(screen.getAllByRole('button').filter((button) => button.className === 'coffee-row')).toHaveLength(30);
+  expect(screen.getAllByRole('button').filter((button) => button.classList.contains('coffee-row'))).toHaveLength(30);
   expect(screen.getByText('Recommended by Keld - good for lunch')).toBeInTheDocument();
   expect(window.L.marker).toHaveBeenCalledTimes(30);
   expect(window.L.divIcon.mock.calls[0][0].html.textContent).toBe('Pompette');
@@ -102,7 +130,7 @@ test('switching lists replaces places and markers while preserving the location 
   fireEvent.click(categoryButton('Coffee'));
   expect(screen.queryByText('Pompette')).not.toBeInTheDocument();
   expect(screen.getByText('April Coffee Store & Showroom')).toBeInTheDocument();
-  expect(screen.getAllByRole('button').filter((button) => button.className === 'coffee-row')).toHaveLength(14);
+  expect(screen.getAllByRole('button').filter((button) => button.classList.contains('coffee-row'))).toHaveLength(14);
   expect(window.L.marker).toHaveBeenCalledTimes(44);
   expect(layers[1].clearLayers).toHaveBeenCalledTimes(locationClearCount);
   expect(window.L.map).toHaveBeenCalledTimes(1);
@@ -117,7 +145,7 @@ test('switching lists replaces places and markers while preserving the location 
     fireEvent.click(categoryButton(key));
     expect(categoryButton(key)).toHaveAttribute('aria-pressed', 'true');
     expect(screen.getByText(firstPlace)).toBeInTheDocument();
-    expect(screen.getAllByRole('button').filter((button) => button.className === 'coffee-row')).toHaveLength(count);
+    expect(screen.getAllByRole('button').filter((button) => button.classList.contains('coffee-row'))).toHaveLength(count);
     expect(layers[1].clearLayers).toHaveBeenCalledTimes(locationClearCount);
     expect(window.L.map).toHaveBeenCalledTimes(1);
   }
