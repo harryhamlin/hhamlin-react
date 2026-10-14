@@ -10,8 +10,10 @@ jest.mock('../utils/loadLeaflet', () => jest.fn());
 let map;
 let events;
 let layers;
+let observers;
+let frames;
 const layer = () => {
-  const result = { addTo: jest.fn(), bindTooltip: jest.fn(), on: jest.fn(), clearLayers: jest.fn() };
+  const result = { addTo: jest.fn(), bindTooltip: jest.fn(), on: jest.fn(), clearLayers: jest.fn(), redraw: jest.fn() };
   result.addTo.mockReturnValue(result);
   result.bindTooltip.mockReturnValue(result);
   result.on.mockReturnValue(result);
@@ -21,11 +23,24 @@ const layer = () => {
 beforeEach(() => {
   events = {};
   layers = [];
+  observers = [];
+  frames = [];
+  window.ResizeObserver = jest.fn(function (callback) {
+    this.notify = callback;
+    this.observe = jest.fn();
+    this.disconnect = jest.fn();
+    observers.push(this);
+  });
+  jest.spyOn(window, 'requestAnimationFrame').mockImplementation((callback) => {
+    frames.push(callback);
+    return frames.length;
+  });
+  jest.spyOn(window, 'cancelAnimationFrame').mockImplementation(() => {});
   map = {
     options: { maxBounds: [[55.61, 12.45], [55.75, 12.69]] },
     on: jest.fn((name, callback) => { events[name] = callback; }),
     fitBounds: jest.fn(), setMinZoom: jest.fn(), getZoom: () => 12,
-    flyTo: jest.fn(), locate: jest.fn(), stopLocate: jest.fn(), remove: jest.fn(),
+    flyTo: jest.fn(), setView: jest.fn(), stop: jest.fn(), invalidateSize: jest.fn(), locate: jest.fn(), stopLocate: jest.fn(), remove: jest.fn(),
   };
   window.L = {
     map: jest.fn(() => map),
@@ -63,6 +78,8 @@ test.each(['food', 'coffee', 'museums', 'pastries', 'party', 'sauna', 'eater'])(
     expect(within(dialog).queryByRole('link', { name: /get directions/i })).not.toBeInTheDocument();
   }
 );
+
+afterEach(() => { jest.restoreAllMocks(); });
 
 const categoryButton = (key) => within(screen.getByRole('navigation', { name: 'Copenhagen lists' })).getByRole('button', { name: new RegExp(`^${key}$`, 'i') });
 
@@ -154,7 +171,7 @@ test('coffee deep link works and location access is requested only on click', as
   fireEvent.click(button);
   expect(map.locate).toHaveBeenCalledWith(expect.objectContaining({ watch: false, setView: false }));
   act(() => events.locationfound({ latlng: { lat: 55.68, lng: 12.57 }, accuracy: 18 }));
-  expect(map.flyTo).toHaveBeenCalledWith({ lat: 55.68, lng: 12.57 }, 15);
+  expect(map.setView).toHaveBeenCalledWith({ lat: 55.68, lng: 12.57 }, 15, { animate: false });
   expect(screen.getByRole('status')).toHaveTextContent('accuracy approximately 18 m');
   expect(button).toBeEnabled();
 });
@@ -166,9 +183,69 @@ test('outside-Copenhagen locations and denied permissions give actionable feedba
   fireEvent.click(button);
   act(() => events.locationfound({ latlng: { lat: 47.6, lng: -122.3 }, accuracy: 20 }));
   expect(screen.getByRole('status')).toHaveTextContent('outside this Copenhagen map area');
-  expect(map.flyTo).not.toHaveBeenCalled();
+  expect(map.setView).not.toHaveBeenCalled();
   fireEvent.click(button);
   act(() => events.locationerror({ code: 1 }));
   expect(screen.getByRole('status')).toHaveTextContent('Allow location access in your browser settings');
   expect(button).toBeEnabled();
+});
+
+
+test('switching lists and showing all keep a usable fixed zoom range', async () => {
+  openPage();
+  await waitFor(() => expect(screen.getByRole('button', { name: 'Find me' })).toBeEnabled());
+  const options = window.L.map.mock.calls[0][1];
+  expect(options.minZoom).toBe(8);
+  expect(options.maxZoom).toBe(20);
+  const tileOptions = window.L.tileLayer.mock.calls[0][1];
+  expect(tileOptions.maxNativeZoom).toBe(19);
+  expect(tileOptions.maxZoom).toBe(20);
+  fireEvent.click(categoryButton('Party'));
+  fireEvent.click(screen.getByRole('button', { name: 'Show all' }));
+  expect(map.setMinZoom).not.toHaveBeenCalled();
+  expect(map.fitBounds).toHaveBeenLastCalledWith(expect.any(Array), expect.objectContaining({ animate: false, maxZoom: 15 }));
+  expect(map.stop).toHaveBeenCalled();
+});
+
+test('the map refreshes its dimensions after resizing and disconnects on unmount', async () => {
+  const { unmount } = openPage();
+  await waitFor(() => expect(screen.getByRole('button', { name: 'Find me' })).toBeEnabled());
+  const initialCalls = map.invalidateSize.mock.calls.length;
+  act(() => {
+    observers[0].notify();
+    frames[frames.length - 1]();
+  });
+  expect(map.invalidateSize.mock.calls.length).toBeGreaterThan(initialCalls);
+  expect(map.invalidateSize).toHaveBeenLastCalledWith({ pan: false, debounceMoveend: true });
+  unmount();
+  expect(observers[0].disconnect).toHaveBeenCalled();
+  expect(map.remove).toHaveBeenCalled();
+});
+
+test('failed tiles offer a reload without resetting the location or rebuilding the map', async () => {
+  openPage();
+  await waitFor(() => expect(screen.getByRole('button', { name: 'Find me' })).toBeEnabled());
+  const tiles = window.L.tileLayer.mock.results[0].value;
+  const tileEvent = (name) => tiles.on.mock.calls.find(([event]) => event === name)[1];
+  act(() => tileEvent('tileerror')());
+  expect(screen.getByText(/Some map tiles could not load/)).toBeInTheDocument();
+  const locationClears = layers[1].clearLayers.mock.calls.length;
+  fireEvent.click(screen.getByRole('button', { name: 'Reload map' }));
+  expect(tiles.redraw).toHaveBeenCalled();
+  expect(window.L.map).toHaveBeenCalledTimes(1);
+  expect(layers[1].clearLayers).toHaveBeenCalledTimes(locationClears);
+  act(() => {
+    tileEvent('loading')();
+    tileEvent('load')();
+  });
+  expect(screen.queryByRole('button', { name: 'Reload map' })).not.toBeInTheDocument();
+});
+
+test('an initialization failure can be retried', async () => {
+  loadLeaflet.mockRejectedValueOnce(new Error('load failed'));
+  openPage();
+  const retry = await screen.findByRole('button', { name: 'Reload map' });
+  fireEvent.click(retry);
+  await waitFor(() => expect(screen.getByRole('button', { name: 'Find me' })).toBeEnabled());
+  expect(screen.queryByRole('button', { name: 'Reload map' })).not.toBeInTheDocument();
 });

@@ -35,6 +35,8 @@ export default function Copenhagen() {
   const coffeeSelected = listKey === 'coffee';
   const mapEl = useRef(null);
   const mapRef = useRef(null);
+  const leafletRef = useRef(null);
+  const tilesRef = useRef(null);
   const placeLayersRef = useRef(null);
   const dialogRef = useRef(null);
   const navRef = useRef(null);
@@ -42,6 +44,8 @@ export default function Copenhagen() {
   const [menuOpen, setMenuOpen] = useState(false);
   const [selected, setSelected] = useState(null);
   const [mapError, setMapError] = useState(false);
+  const [tileError, setTileError] = useState(false);
+  const [mapAttempt, setMapAttempt] = useState(0);
   const [mapReady, setMapReady] = useState(false);
   const [locating, setLocating] = useState(false);
   const [locationStatus, setLocationStatus] = useState('');
@@ -74,13 +78,28 @@ export default function Copenhagen() {
 
   useEffect(() => {
     let map;
+    let resizeObserver;
+    let resizeFrame;
     let cancelled = false;
+    setMapReady(false);
+    setMapError(false);
+    setTileError(false);
     loadLeaflet().then((L) => {
       if (cancelled || !mapEl.current) return;
+      leafletRef.current = L;
       map = L.map(mapEl.current, {
+        center: [55.68, 12.57],
+        zoom: 12,
+        minZoom: 8,
+        maxZoom: 20,
         maxBounds: guideBounds,
-        maxBoundsViscosity: 1,
+        maxBoundsViscosity: 0.6,
         scrollWheelZoom: true,
+        touchZoom: 'center',
+        bounceAtZoomLimits: false,
+        zoomAnimation: false,
+        fadeAnimation: false,
+        markerZoomAnimation: false,
       });
       mapRef.current = map;
       placeLayersRef.current = L.layerGroup().addTo(map);
@@ -102,7 +121,8 @@ export default function Copenhagen() {
           radius: 8, color: '#fff', weight: 3,
           fillColor: '#e53935', fillOpacity: 1,
         }).addTo(locationLayers).bindTooltip('You are here');
-        map.flyTo(event.latlng, 15);
+        map.stop();
+        map.setView(event.latlng, 15, { animate: false });
         setLocationStatus(`Location found · accuracy approximately ${Math.round(event.accuracy)} m. The red dot marks your location.`);
       });
       map.on('locationerror', (event) => {
@@ -115,26 +135,53 @@ export default function Copenhagen() {
         };
         setLocationStatus(messages[event.code] || 'Your location could not be found. Please try again.');
       });
-      L.tileLayer('https://services.arcgisonline.com/ArcGIS/rest/services/Canvas/World_Dark_Gray_Base/MapServer/tile/{z}/{y}/{x}', {
-        maxZoom: 16,
-        attribution: '&copy; Esri &mdash; Esri, DeLorme, NAVTEQ',
-      }).addTo(map);
+      let failedTiles = false;
+      tilesRef.current = L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
+        maxNativeZoom: 19,
+        maxZoom: 20,
+        keepBuffer: 2,
+        className: 'copenhagen-map-tile',
+        attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors',
+      }).on('loading', () => { failedTiles = false; })
+        .on('tileerror', () => {
+          failedTiles = true;
+          if (!cancelled) setTileError(true);
+        })
+        .on('load', () => { if (!cancelled) setTileError(failedTiles); })
+        .addTo(map);
+
+      // Mobile browser chrome, rotation, and list text can change the map size.
+      const refreshSize = () => {
+        cancelAnimationFrame(resizeFrame);
+        resizeFrame = requestAnimationFrame(() => {
+          if (!cancelled) map.invalidateSize({ pan: false, debounceMoveend: true });
+        });
+      };
+      if (typeof ResizeObserver !== 'undefined') {
+        resizeObserver = new ResizeObserver(refreshSize);
+        resizeObserver.observe(mapEl.current);
+      }
+      refreshSize();
       setMapReady(true);
     }).catch(() => { if (!cancelled) setMapError(true); });
     return () => {
       cancelled = true;
+      cancelAnimationFrame(resizeFrame);
+      if (resizeObserver) resizeObserver.disconnect();
       mapRef.current = null;
+      leafletRef.current = null;
+      tilesRef.current = null;
       placeLayersRef.current = null;
       if (map) {
         map.stopLocate();
         map.remove();
       }
     };
-  }, []);
+  }, [mapAttempt]);
 
   useEffect(() => {
     if (!mapReady || !mapRef.current || !placeLayersRef.current) return;
-    const L = window.L;
+    const L = leafletRef.current;
     const map = mapRef.current;
     const layers = placeLayersRef.current;
     layers.clearLayers();
@@ -159,9 +206,9 @@ export default function Copenhagen() {
         .addTo(layers)
         .on('click', () => setSelected(place));
     });
-    map.setMinZoom(0);
-    map.fitBounds(places.map((place) => [place.lat, place.lon]), { padding: [80, 60] });
-    map.setMinZoom(map.getZoom());
+    map.stop();
+    map.invalidateSize({ pan: false });
+    map.fitBounds(places.map((place) => [place.lat, place.lon]), { padding: [60, 40], maxZoom: 15, animate: false });
   }, [places, mapReady]);
 
   useEffect(() => {
@@ -174,8 +221,29 @@ export default function Copenhagen() {
   };
 
   const select = (place) => {
-    if (mapRef.current) mapRef.current.flyTo([place.lat, place.lon], 15);
+    if (mapRef.current) {
+      mapRef.current.stop();
+      mapRef.current.setView([place.lat, place.lon], 15, { animate: false });
+    }
     setSelected(place);
+  };
+
+  const showAll = () => {
+    const map = mapRef.current;
+    if (!map) return;
+    map.stop();
+    map.invalidateSize({ pan: false });
+    map.fitBounds(places.map((place) => [place.lat, place.lon]), { padding: [60, 40], maxZoom: 15, animate: false });
+  };
+
+  const reloadMap = () => {
+    if (!mapRef.current || mapError) {
+      setMapAttempt((attempt) => attempt + 1);
+      return;
+    }
+    mapRef.current.stop();
+    mapRef.current.invalidateSize({ pan: false });
+    tilesRef.current.redraw();
   };
 
   const findMe = () => {
@@ -219,7 +287,7 @@ export default function Copenhagen() {
           ))}
         </div>
       </nav>
-      <section className="page-section reveal">
+      <section className="page-section">
         <h2 className="section-label">Copenhagen {currentList.label} Map</h2>
         <p>{currentList.description}</p>
         {currentList.sourceUrl && <p><a href={currentList.sourceUrl} target="_blank" rel="noopener noreferrer">{currentList.sourceLabel || 'Original Google Maps list'} ↗</a></p>}
@@ -232,9 +300,13 @@ export default function Copenhagen() {
           <button className="coffee-find-me" onClick={findMe} disabled={!mapReady || locating}>
             {locating ? 'Finding you…' : 'Find me'}
           </button>
+          <button className="coffee-find-me" onClick={showAll} disabled={!mapReady}>Show all</button>
           <p role="status" aria-live="polite">{locationStatus}</p>
         </div>
-        {mapError && <p role="status">The map could not load. All locations are available below.</p>}
+        {(mapError || tileError) && <div className="coffee-location-controls">
+          <p role="status">{mapError ? 'The map could not load.' : 'Some map tiles could not load.'} All places are still listed below.</p>
+          <button className="coffee-find-me" onClick={reloadMap}>Reload map</button>
+        </div>}
         <div className="exmap-leaflet coffee-map" ref={mapEl} aria-label={`Map of Copenhagen ${currentList.label.toLowerCase()} places`} />
       </section>
       {(coffeeSelected ? [true, false] : [false]).map((priority) => (
