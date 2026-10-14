@@ -1,5 +1,22 @@
 // Address coordinates geocoded from OpenStreetMap via Photon.
 // Roaster descriptions and visiting notes supplied for this private shortlist.
+const websites = [
+  "https://www.aprilcoffeeroasters.com/shops/april-store",
+  "https://coffeecollective.dk/pages/coffee-shop/bernikow",
+  "https://lacabra.com/pages/montergade",
+  "https://www.prologcoffee.com/",
+  "https://norange.dk/",
+  "https://www.saftig.coffee/",
+  "https://pontescoffee.com/",
+  "https://nomaprojects.com/pages/contact",
+  "https://www.andersenmaillard.dk/",
+  "https://theartisan.dk/",
+  "https://impactroasters.dk/",
+  "https://www.kontracoffee.com/kaffehuset",
+  "https://roast.com/locations/",
+  "https://yellowbirdcoffee.live/"
+];
+
 export const roasters = [
   { id: 1, name: 'April Coffee Store & Showroom', shortName: 'April', address: 'Pilestræde 39, 1112 Copenhagen', area: 'Indre By', detail: "Coffee roaster’s store and showroom focused on very light roasts, competition-style filter brewing, and rare single-origin microlots.", lat: 55.681052, lon: 12.579515 },
   { id: 2, name: 'Coffee Collective Bernikow', shortName: 'Collective', address: 'Kristen Bernikows Gade 2, 1105 Copenhagen', area: 'Indre By', detail: "Specialty coffee bar from Coffee Collective, serving filter and espresso from single-origin beans, including washed Ethiopian and Kenyan coffees.", lat: 55.680064, lon: 12.582401 },
@@ -15,4 +32,9 @@ export const roasters = [
   { id: 12, name: 'Kontra Coffee', shortName: 'Kontra', address: 'Dag Hammarskjölds Allé 36, 2100 Copenhagen', area: 'Østerbro', detail: "Established specialty coffee roaster and café on Østerbro, serving espresso and filter coffee.", lat: 55.69577, lon: 12.580835 },
   { id: 13, name: 'ROAST Coffee', shortName: 'ROAST', address: 'Vestmannagade 4, 2300 Copenhagen', area: 'Islands Brygge', detail: "Coffee bar and on-site roastery in Islands Brygge, focused on clean, bright, light-roasted single-origin beans.", lat: 55.66831, lon: 12.57949 },
   { id: 14, name: 'Yellow Bird Coffee', shortName: 'Yellow Bird', address: 'Amager Strandvej 108, 2300 Copenhagen', area: 'Amager Strand', detail: "Coffee roaster’s café by Amager Strand, serving specialty coffee from small-batch roasted, fruity single-origin beans.", lat: 55.661075, lon: 12.631956 },
-].map((place) => ({ ...place, priority: place.id <= 8 }));
+].map((place) => ({
+  ...place,
+  priority: place.id <= 8,
+  websiteUrl: websites[place.id - 1],
+  mapsUrl: `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(place.name + ', ' + place.address + ', Denmark')}`,
+}));

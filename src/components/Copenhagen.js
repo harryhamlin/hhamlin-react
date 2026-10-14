@@ -1,31 +1,8 @@
 import React, { useEffect, useRef, useState } from 'react';
 import loadLeaflet from '../utils/loadLeaflet';
-import addListMemberships from '../utils/listMemberships';
-import { roasters } from '../data/coffee';
-import { food, foodListUrl } from '../data/food';
-import { eater, eaterListUrl } from '../data/eater';
-import { museums, museumsListUrl } from '../data/museums';
-import { pastries, pastriesListUrl } from '../data/pastries';
-import { party, partyListUrl } from '../data/party';
-import { sauna, saunaListUrl } from '../data/sauna';
+import { lists } from '../data/copenhagenLists';
+import Recommendations from './Recommendations';
 import { useSearchParams } from 'react-router-dom';
-
-const lists = addListMemberships({
-  food: { label: 'Food', sectionTitle: 'Food & Drink', sourceUrl: foodListUrl, places: food, description: 'Restaurants, bars, and other food stops from the shared Copenhagen food list.' },
-  keld: {
-    label: 'Keld’s recommendations',
-    mapTitle: 'Keld’s Recommendations Map',
-    sourceUrl: foodListUrl,
-    places: food.filter((place) => /recommended by keld/i.test(place.note)).map((place, index) => ({ ...place, id: index + 1 })),
-    description: 'The five restaurants marked as recommended by Keld in the shared Food list.',
-  },
-  eater: { label: 'Eater', sourceUrl: eaterListUrl, sourceLabel: 'Original Eater guide', places: eater, description: '38 places from Eater’s Copenhagen guide, July 2024 edition.' },
-  museums: { label: 'Museums', sourceUrl: museumsListUrl, places: museums, description: 'Museums, art, gardens, and cultural stops in Copenhagen and nearby, from the shared museum list.' },
-  pastries: { label: 'Pastries', sourceUrl: pastriesListUrl, places: pastries, description: 'Saved pastry stops, bakeries, and more from the shared pastry list.' },
-  party: { label: 'Party', sourceUrl: partyListUrl, places: party, description: 'Bars and music venues from the shared party list.' },
-  sauna: { label: 'Sauna', sourceUrl: saunaListUrl, places: sauna, description: 'Saunas and bathing spots from the shared sauna list.' },
-  coffee: { label: 'Coffee', places: roasters, description: 'Single-origin, light roasts, pour-over, and experimental processing. One representative location per roaster.' },
-});
 
 // Include the northern museum trips and every saved branch in the map area.
 const allPlaces = Object.values(lists).flatMap((list) => list.places);
@@ -295,6 +272,7 @@ export default function Copenhagen() {
           ))}
         </div>
       </nav>
+      <Recommendations activeList={listKey} />
       <section className="page-section">
         <h2 className="section-label">{currentList.mapTitle || `Copenhagen ${currentList.label} Map`}</h2>
         <p>{currentList.description}</p>
@@ -351,7 +329,7 @@ export default function Copenhagen() {
           <p className="coffee-memberships"><strong>Appears in:</strong> {selected.memberships.map((list) => list.label).join(' · ')}</p>
           {(selected.address || selected.area) && <p>{selected.address}{selected.area && <><br />{selected.area}</>}</p>}
           {selected.detail && <p className="coffee-detail">{selected.detail}</p>}
-          {selected.descriptionUrl && <p><a href={selected.descriptionUrl} target="_blank" rel="noopener noreferrer">About this place ↗</a></p>}
+          {(selected.websiteUrl || selected.descriptionUrl) && <p><a href={selected.websiteUrl || selected.descriptionUrl} target="_blank" rel="noopener noreferrer">{selected.websiteUrl ? 'Visit website' : 'About this place'} ↗</a></p>}
           {selected.mapsUrl && <p><a href={selected.mapsUrl} target="_blank" rel="noopener noreferrer">View place on Google Maps ↗</a></p>}
           {selected.note && <p className="coffee-note">{selected.note}</p>}
         </>}

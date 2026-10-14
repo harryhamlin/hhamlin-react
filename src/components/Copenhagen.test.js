@@ -4,6 +4,7 @@ import { act, fireEvent, render, screen, waitFor, within } from '@testing-librar
 import { MemoryRouter } from 'react-router-dom';
 import Copenhagen from './Copenhagen';
 import loadLeaflet from '../utils/loadLeaflet';
+import { roasters } from '../data/coffee';
 
 jest.mock('../utils/loadLeaflet', () => jest.fn());
 
@@ -80,6 +81,17 @@ test.each(['food', 'coffee', 'museums', 'pastries', 'party', 'sauna', 'eater', '
 );
 
 afterEach(() => { jest.restoreAllMocks(); });
+
+test.each(roasters)('$name exposes its website and saved location in the detail card', async (place) => {
+  const { container } = openPage('/copenhagen?list=coffee');
+  await waitFor(() => expect(screen.getByRole('button', { name: 'Find me' })).toBeEnabled());
+  const row = Array.from(container.querySelectorAll('.coffee-row')).find((row) => row.querySelector('.coffee-name').textContent === place.name);
+  fireEvent.click(row);
+  const dialog = within(screen.getByRole('dialog'));
+  expect(dialog.getByRole('link', { name: 'Visit website ↗' })).toHaveAttribute('href', place.websiteUrl);
+  expect(dialog.getByRole('link', { name: 'View place on Google Maps ↗' })).toHaveAttribute('href', place.mapsUrl);
+  expect(new URL(place.mapsUrl).searchParams.get('query')).toContain(place.address);
+});
 
 test.each([
   ['food', 'Pompette', ['Food', 'Eater']],
