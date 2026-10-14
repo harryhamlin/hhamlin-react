@@ -477,9 +477,9 @@ a:focus-visible, button:focus-visible { outline: 2px solid var(--ink); outline-o
   .coffee-dialog { padding: 28px 22px; }
 }
 /* Fixed category navigation stays available while exploring the map or list. */
-.copenhagen-nav { gap: 20px; }
+.copenhagen-nav { gap: 12px; height: auto; min-height: 56px; padding-top: 6px; padding-bottom: 6px; }
 .copenhagen-nav .brand { flex-shrink: 0; }
-.copenhagen-nav-lists { display: flex; align-items: center; gap: 2px; overflow-x: auto; white-space: nowrap; min-width: 0; margin-left: auto; }
+.copenhagen-nav-lists { display: flex; flex-wrap: wrap; align-items: center; gap: 0; min-width: 0; }
 .copenhagen-nav-lists .nav-link { flex-shrink: 0; }
 .copenhagen-nav-lists .nav-link:focus-visible { outline-color: var(--snow); outline-offset: -2px; }
 .copenhagen-pin { border: 2px solid #fff; border-radius: 50%; background: #426d80; box-shadow: 0 2px 6px #0008; }
@@ -489,9 +489,9 @@ a:focus-visible, button:focus-visible { outline: 2px solid var(--ink); outline-o
 .copenhagen-pin:hover, .copenhagen-pin:focus-visible { z-index: 1000 !important; }
 .copenhagen-pin:hover .copenhagen-pin-label, .copenhagen-pin:focus-visible .copenhagen-pin-label { background: #314551; }
 @media (max-width: 600px) {
-  .copenhagen-nav { padding: 0 8px; gap: 0; }
+  .copenhagen-nav { padding: 6px 8px; gap: 0; }
   .copenhagen-nav .brand { display: none; }
   .copenhagen-nav-lists { width: 100%; margin-left: 0; gap: 0; }
-  .copenhagen-nav-lists .nav-link { padding: 8px 10px; font-size: 11px; letter-spacing: .04em; }
+  .copenhagen-nav-lists .nav-link { padding: 8px 6px; font-size: 10px; letter-spacing: 0; }
   .copenhagen-pin-label { max-width: 150px; font-size: 10px; }
 }
