@@ -80,7 +80,7 @@ test('switching lists replaces places and markers while preserving the location 
   expect(screen.getByText('Recommended by Keld - good for lunch')).toBeInTheDocument();
   expect(window.L.marker).toHaveBeenCalledTimes(30);
   expect(window.L.divIcon.mock.calls[0][0].html.textContent).toBe('Pompette');
-  expect(screen.getByRole('navigation', { name: 'Copenhagen lists' }).querySelectorAll('button')).toHaveLength(7);
+  expect(screen.getByRole('navigation', { name: 'Copenhagen lists' }).querySelectorAll('.copenhagen-nav-lists button')).toHaveLength(7);
   const locationClearCount = layers[1].clearLayers.mock.calls.length;
   fireEvent.click(categoryButton('Coffee'));
   expect(screen.queryByText('Pompette')).not.toBeInTheDocument();
@@ -103,6 +103,25 @@ test('switching lists replaces places and markers while preserving the location 
     expect(layers[1].clearLayers).toHaveBeenCalledTimes(locationClearCount);
     expect(window.L.map).toHaveBeenCalledTimes(1);
   }
+});
+
+test('the list menu closes after selection, Escape, or tapping outside', async () => {
+  openPage();
+  await waitFor(() => expect(screen.getByRole('button', { name: 'Find me' })).toBeEnabled());
+  const toggle = screen.getByRole('button', { name: 'Choose a list' });
+  expect(toggle).toHaveAttribute('aria-expanded', 'false');
+  fireEvent.click(toggle);
+  expect(toggle).toHaveAttribute('aria-expanded', 'true');
+  fireEvent.click(categoryButton('Museums'));
+  expect(toggle).toHaveAttribute('aria-expanded', 'false');
+  expect(categoryButton('Museums')).toHaveAttribute('aria-pressed', 'true');
+  fireEvent.click(toggle);
+  fireEvent.keyDown(document, { key: 'Escape' });
+  expect(toggle).toHaveAttribute('aria-expanded', 'false');
+  expect(toggle).toHaveFocus();
+  fireEvent.click(toggle);
+  fireEvent.pointerDown(document.body);
+  expect(toggle).toHaveAttribute('aria-expanded', 'false');
 });
 
 test.each([

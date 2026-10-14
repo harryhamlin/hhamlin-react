@@ -37,11 +37,32 @@ export default function Copenhagen() {
   const mapRef = useRef(null);
   const placeLayersRef = useRef(null);
   const dialogRef = useRef(null);
+  const navRef = useRef(null);
+  const menuButtonRef = useRef(null);
+  const [menuOpen, setMenuOpen] = useState(false);
   const [selected, setSelected] = useState(null);
   const [mapError, setMapError] = useState(false);
   const [mapReady, setMapReady] = useState(false);
   const [locating, setLocating] = useState(false);
   const [locationStatus, setLocationStatus] = useState('');
+
+  useEffect(() => {
+    if (!menuOpen) return;
+    const dismiss = (event) => {
+      if (event.type === 'keydown' && event.key === 'Escape') {
+        setMenuOpen(false);
+        menuButtonRef.current.focus();
+      } else if (event.type === 'pointerdown' && !navRef.current.contains(event.target)) {
+        setMenuOpen(false);
+      }
+    };
+    document.addEventListener('keydown', dismiss);
+    document.addEventListener('pointerdown', dismiss);
+    return () => {
+      document.removeEventListener('keydown', dismiss);
+      document.removeEventListener('pointerdown', dismiss);
+    };
+  }, [menuOpen]);
 
   useEffect(() => {
     const robots = document.createElement('meta');
@@ -74,15 +95,15 @@ export default function Copenhagen() {
         }
         L.circle(event.latlng, {
           radius: event.accuracy,
-          color: '#3498db', weight: 1, fillOpacity: 0.12,
+          color: '#e53935', weight: 1, fillOpacity: 0.12,
           interactive: false,
         }).addTo(locationLayers);
         L.circleMarker(event.latlng, {
           radius: 8, color: '#fff', weight: 3,
-          fillColor: '#1685d1', fillOpacity: 1,
+          fillColor: '#e53935', fillOpacity: 1,
         }).addTo(locationLayers).bindTooltip('You are here');
         map.flyTo(event.latlng, 15);
-        setLocationStatus(`Location found · accuracy approximately ${Math.round(event.accuracy)} m. The blue dot marks your location.`);
+        setLocationStatus(`Location found · accuracy approximately ${Math.round(event.accuracy)} m. The red dot marks your location.`);
       });
       map.on('locationerror', (event) => {
         if (cancelled) return;
@@ -177,9 +198,13 @@ export default function Copenhagen() {
 
   return (
     <main className="page-main coffee-page" id="copenhagen">
-      <nav className="site-nav copenhagen-nav" aria-label="Copenhagen lists">
+      <nav className="site-nav copenhagen-nav" aria-label="Copenhagen lists" ref={navRef}>
         <span className="brand">Copenhagen</span>
-        <div className="copenhagen-nav-lists">
+        <span className="copenhagen-active-list">{currentList.label}</span>
+        <button className="nav-burger" ref={menuButtonRef} aria-label="Choose a list" aria-expanded={menuOpen} aria-controls="copenhagen-list-menu" onClick={() => setMenuOpen((open) => !open)}>
+          <span /><span /><span />
+        </button>
+        <div id="copenhagen-list-menu" className={`copenhagen-nav-lists${menuOpen ? ' open' : ''}`}>
           {Object.entries(lists).map(([key, list]) => (
             <button
               key={key}
@@ -187,6 +212,7 @@ export default function Copenhagen() {
               aria-pressed={key === listKey}
               onClick={() => {
                 close();
+                setMenuOpen(false);
                 setSearchParams({ list: key }, { replace: true });
               }}
             >{list.label}</button>
