@@ -132,18 +132,10 @@ export default function Copenhagen() {
       const icon = L.divIcon({
         className: `copenhagen-pin${place.priority ? ' priority' : ''}`,
         html: label,
-        iconSize: [12, 12], iconAnchor: [6, 6], tooltipAnchor: [0, 8],
+        iconSize: [12, 12], iconAnchor: [6, 6],
       });
-      const tooltip = document.createElement('span');
-      tooltip.textContent = place.name;
-      if (place.area) {
-        const area = document.createElement('small');
-        area.textContent = place.area;
-        tooltip.appendChild(area);
-      }
-      L.marker([place.lat, place.lon], { icon, title: place.name, alt: place.name })
+      L.marker([place.lat, place.lon], { icon, alt: place.name })
         .addTo(layers)
-        .bindTooltip(tooltip, { className: 'peak-tip', direction: 'top' })
         .on('click', () => setSelected(place));
     });
     map.setMinZoom(0);
@@ -216,7 +208,7 @@ export default function Copenhagen() {
           </button>
           <p role="status" aria-live="polite">{locationStatus}</p>
         </div>
-        {mapError && <p role="status">The map could not load. All locations and directions are available below.</p>}
+        {mapError && <p role="status">The map could not load. All locations are available below.</p>}
         <div className="exmap-leaflet coffee-map" ref={mapEl} aria-label={`Map of Copenhagen ${currentList.label.toLowerCase()} places`} />
       </section>
       {(coffeeSelected ? [true, false] : [false]).map((priority) => (
@@ -252,7 +244,6 @@ export default function Copenhagen() {
           {selected.descriptionUrl && <p><a href={selected.descriptionUrl} target="_blank" rel="noopener noreferrer">About this place ↗</a></p>}
           {selected.mapsUrl && <p><a href={selected.mapsUrl} target="_blank" rel="noopener noreferrer">View place on Google Maps ↗</a></p>}
           {selected.note && <p className="coffee-note">{selected.note}</p>}
-          <a href={`https://www.google.com/maps/dir/?api=1&destination=${encodeURIComponent(`${selected.lat},${selected.lon}`)}`} target="_blank" rel="noopener noreferrer">Get directions ↗</a>
         </>}
       </dialog>
     </main>

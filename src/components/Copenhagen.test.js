@@ -53,11 +53,14 @@ test.each(['food', 'coffee', 'museums', 'pastries', 'party', 'sauna', 'eater'])(
     const firstDescription = rows[0].querySelector('.coffee-detail').textContent;
     const firstName = rows[0].querySelector('.coffee-name').textContent;
     const marker = window.L.marker.mock.results[0].value;
+    expect(marker.bindTooltip).not.toHaveBeenCalled();
+    expect(window.L.marker.mock.calls[0][1]).not.toHaveProperty('title');
     const clickPin = marker.on.mock.calls.find(([name]) => name === 'click')[1];
     act(() => clickPin());
     const dialog = screen.getByRole('dialog');
     expect(within(dialog).getByRole('heading', { name: firstName })).toBeInTheDocument();
     expect(within(dialog).getByText(firstDescription)).toBeInTheDocument();
+    expect(within(dialog).queryByRole('link', { name: /get directions/i })).not.toBeInTheDocument();
   }
 );
 
